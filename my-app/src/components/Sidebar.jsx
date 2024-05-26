@@ -11,7 +11,7 @@ const routes = [
     },
 	{
 		name: 'Inicio',
-		path: '/',
+		path: '/dashboard',
 		icon: FaHome,
 	},
 	{
@@ -46,7 +46,7 @@ const routes = [
 	},
 	{
 		name: 'Salir',
-		path: '/salir',
+		path: '/login',
 		icon: IoLogOut,
 	},
 ];
