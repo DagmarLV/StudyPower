@@ -3,7 +3,6 @@ import React from 'react'
 import ListTasks from '@/components/ListTasks';
 import tasks from '@/data/tasks.json';
 	
-  
 
 async function TaskPage() {
 	const tasks = await getTasks(1806);
