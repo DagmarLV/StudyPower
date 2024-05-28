@@ -3,6 +3,8 @@ import Search from '@/components/Search';
 import TipPreview from '@/components/TipPreview';
 import ListTasks from '@/components/ListTasks';
 import { FaStar } from 'react-icons/fa';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 import tips from '@/data/tips.json';
 import tasks from '@/data/tasks.json';
@@ -27,10 +29,13 @@ async function DashboardPage() {
 			<div className="flex md:flex-row flex-col gap-4">
 				<div className="flex flex-col gap-4 md:w-1/3 w-full">
 					{/*Calendar*/}
-					<div className="w-full h-[400px] rounded-lg bg-slate-200"></div>
+					<div className="w-full h-[400px] rounded-lg bg-slate-200">
+					<Calendar />
+					</div>
 					<TipPreview tip={tips[0]?.tip} className="p-6  rounded-lg bg-slate-200">
 						<FaStar size={48} />
 						<p className="text-center">{tips[0]?.phrase}</p>
+						<h2 className='text-base text-left w-full'>Tips:</h2>
 					</TipPreview>
 				</div>
 				<div className="flex flex-col gap-4 md:w-2/3 w-full">

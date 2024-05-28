@@ -8,7 +8,6 @@ function TipPreview(props) {
                 {props?.children}
             </div>
             <div className='flex flex-col gap-1'>
-                <h2 className='text-base'>Tips:</h2>
                 <div className='flex gap-4 p-6 rounded-md bg-[#212E3F]/10'>
                     <div className='rounded-full h-fit w-fit p-1 bg-white'>
                         <FcIdea size={24}/>

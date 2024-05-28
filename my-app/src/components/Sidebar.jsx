@@ -59,7 +59,7 @@ function Sidebar(props) {
 					
 					<li key={index} className={`group flex justify-center w-full py-4 hover:bg-slate-800 ${route.name === 'Salir' ? 'mt-10' : ''}`}>
 						<Link href={route.path} title={route.name} className='flex justify-center w-full transition-all duration-500 group-hover:scale-125 text-slate-800 group-hover:text-white'>
-							<route.icon size={22} />
+							<route.icon size={25} />
 						</Link>
 					</li>
 				))}
