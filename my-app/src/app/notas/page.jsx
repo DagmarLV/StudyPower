@@ -1,11 +1,26 @@
 'use client';
 import NoteSelector from "@/components/NoteSelector";
 import AddButtonNote from "@/components/AddButtonNote";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export default function NotesPage() {
     const [notes, setNotes] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/notes/get', { method: 'GET' })
+            .then(response => response.json())
+            .then(data => {
+                const _notes = [];
+                data.forEach(note => {
+                    _notes.push({
+                        id: note.id,
+                        name: note.title,
+                        url: note.url
+                    });
+                });
+                setNotes(_notes);
+            });
+    }, []);
     const [addNotes, setAddNotes] = useState(false);
     const onSubmit = async (event) => {
         event.preventDefault()
@@ -19,7 +34,10 @@ export default function NotesPage() {
             body: JSON.stringify(Object.fromEntries(formData)),
         });
         const response = await data.json();
-        console.log(response.data);
+        if (response.code !== 201) {
+            alert('Error al añadir la nota');
+            return;
+        }
         setNotes([...notes, {
             id: response.data.userId,
             name: response.data.title,
