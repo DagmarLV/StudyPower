@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import Search from '@/components/Search';
 import TipPreview from '@/components/TipPreview';
@@ -12,16 +13,17 @@ async function DashboardPage() {
 	const tips = await getTips();
 	const tasks = await getTasks(1806);
     const lastTasks = tasks.splice(-3);
-	const notificationVisible = false;
+	/*const [notificationVisible, setNotificationVisible] = useState(true);*/
+	const notificationVisible = true;
 	return (
 		<section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:mt-8">
-			{notificationVisible && (
-        		<Notification
-          			message="This is a notification"
-          			/*onClose={handleCloseNotification}*/
-        		/>
-      		)}
+			
 			<div className="flex md:flex-row flex-col items-center gap-4 ">
+			{notificationVisible && (
+				<div>
+        			<Notification message="This is a notification" onClose={() => setNotificationVisible(false)}/>
+				</div>
+      		)}
 				<h2 className="text-3xl font-bold md:w-1/3 w-full pl-1">Bienvenido a StudyPower</h2>
 				<Search className="md:w-2/3 w-full" />
 			</div>
