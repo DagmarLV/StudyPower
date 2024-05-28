@@ -38,7 +38,7 @@ function RegisterPage() {
                 <form onSubmit={onSubmit}>
                     <div className="mb-4">
                         <label className="block mb-2 text-sm font-medium">Name</label>
-                        <input name="name" type="text" className="w-full p-2 border border-gray-300 rounded-md" />
+                        <input name="user" type="text" className="w-full p-2 border border-gray-300 rounded-md" />
                     </div>
                     <div className="mb-4">
                         <label className="block mb-2 text-sm font-medium">Email</label>
