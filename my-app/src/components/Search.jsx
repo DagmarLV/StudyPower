@@ -9,7 +9,7 @@ function Search(props) {
 				<Link href="/busqueda" title="busqueda">
 					<FaSearch size={14} />
 				</Link>
-				<input type="text" placeholder="Busqueda con LLM..." className="bg-transparent grow outline-none" />
+				<input type="text" placeholder="Búsqueda con LLM..." className="bg-transparent grow outline-none text-xl" />
 				<button title="microphone">
 					<FaMicrophone size={18} />
 				</button>

@@ -32,7 +32,7 @@ function ItemTask(props) {
 						}`}
 					/>
 				</button>
-				<p className="text-sm">{props.task?.date}</p>
+				<p className="text-lm">{props.task?.date}</p>
 			</td>
 			<td className="text-center w-1/5">
 				<button>
