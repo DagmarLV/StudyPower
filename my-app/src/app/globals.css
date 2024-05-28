@@ -7,3 +7,15 @@
 	min-height: 100vh; /* Optional: full height */
 	width: 95%; /* Take up remaining width */
 }
+.triangle-right {
+	position: absolute;
+	top: 50%;
+	right: 60px; 
+	transform: translateY(-50%);
+	width: 0;
+	height: 0;
+	border-top: 40px solid transparent;
+	border-bottom: 40px solid transparent;
+	border-left: 30px solid #212E3F; 
+  }
+  

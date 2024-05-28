@@ -6,7 +6,7 @@ import tasks from '@/data/tasks.json';
 
 async function TaskPage() {
 	const tasks = await getTasks(1806);
-  const lastTasks = tasks.splice(-3);
+  
 
   return (
     <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 w-auto">
@@ -14,8 +14,8 @@ async function TaskPage() {
       <div className=''>Inicio &gt; Tareas</div>
       <div className="flex flex-col gap-4 md:w-2/3 w-full">
 					<div className="flex flex-col gap-6 pl-3 ">
-						<ListTasks tasks={lastTasks} className="gap-6"/>
-						<button className="px-4 py-2 rounded-lg w-fit bg-slate-900 text-white">Agregar tareas</button>
+						<ListTasks tasks={tasks} className="gap-6"/>
+						<button className="px-4 py-2 mt-4 rounded-lg w-fit bg-slate-900 text-white">Agregar tareas</button>
 					</div>		
 			</div>
 

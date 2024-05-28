@@ -19,7 +19,7 @@ function ItemTask(props) {
 					{props.task?.name}
 				</Checkbox>
 			</td>
-			<td className="flex gap-2 text-center w-1/5">
+			<td className="flex gap-2 text-center w-1/5 p-3">
 				<button>
 					<TbAlarmFilled
 						size={18}

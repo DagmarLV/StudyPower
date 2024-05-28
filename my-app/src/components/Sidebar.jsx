@@ -1,13 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { FaUser, FaHome, FaSearch, FaCalendarAlt, FaTasks, FaStickyNote, FaClipboardList, FaRobot } from 'react-icons/fa';
+import { FaUserCircle, FaHome, FaSearch, FaCalendarAlt, FaTasks, FaStickyNote, FaClipboard, FaRobot } from 'react-icons/fa';
 import { IoLogOut } from 'react-icons/io5';
 
 const routes = [
     {
         name: 'Perfil',
         path: '/perfil',
-        icon: FaUser,
+        icon: FaUserCircle,
     },
 	{
 		name: 'Inicio',
@@ -37,7 +37,7 @@ const routes = [
 	{
 		name: 'Resumen',
 		path: '/resumen',
-		icon: FaClipboardList,
+		icon: FaClipboard,
 	},
 	{
 		name: 'Asistente',
