@@ -9,13 +9,13 @@ async function AsistenciaPage() {
 	const tips = await getTips();
 	
 	return (
-        <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-32 w-auto">
-          <div className='md:w-2/3 mt-10 border-b-2 border-black/40 pb-4 text-2xl'>Bienvenido a tu asistente personal</div>
+        <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 ml-2">
+          <div className='md:w-5/6 mt-10 border-b-2 border-black/40 pb-4 text-2xl'>Bienvenido a tu asistente personal</div>
           <div className='text-xl'>Inicio &gt; Asistencia</div>
             <div className="flex md:flex-row flex-col gap-20">
               <div className="flex flex-col gap-8 md:w-2/5 w-full h-full">
                   <p className="text-lg ">Motivación del día</p>
-                <div className="flex flex-col items-center gap-8 p-6 rounded-lg bg-slate-200 md:h-[250px]">
+                <div className="flex flex-col items-center gap-8 p-6 rounded-lg bg-slate-200 h-auto min-h-[250px]">
                   <FaStar size={58}/>
                   <p className="md:mt-1 text-center text-lg">{tips[0]?.phrase}</p>
                 </div>
@@ -29,7 +29,7 @@ async function AsistenciaPage() {
 				
               <div className="flex flex-col gap-8 md:w-3/5 w-full">
                 <p className="text-lg ">Solicita ayuda personalizada</p>
-                <div className="bg-slate-200 p-4 rounded-md flex flex-col h-[600px]">
+                <div className="bg-slate-200 p-4 rounded-md flex flex-col h-auto min-h-[600px]">
                 <div className="flex items-center justify-center mb-4">
                   <div className="text-3xl">🧑‍🏫</div>
                 </div>

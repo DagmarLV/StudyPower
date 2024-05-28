@@ -14,8 +14,8 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="es">
 			<body className="relative">
-				<Sidebar className="fixed top-0 left-0 h-screen w-12 md:w-16 flex flex-col items-center justify-center bg-slate-200" />
-				<main className='ml-12 md:ml-16'>{children}</main>
+				<Sidebar className="fixed top-0 left-0 h-screen w-14 md:w-16 flex flex-col items-center justify-center bg-slate-200" />
+				<main className='ml-14 md:ml-16'>{children}</main>
 			</body>
 		</html>
 	);

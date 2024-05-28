@@ -1,58 +1,46 @@
-// src/app/busqueda/page.jsx
 "use client"; 
 
-import React, { useState, useRef } from 'react';
-
+import React, {useRef } from 'react';
+import Search from '@/components/Search';
+import { FaCopy } from "react-icons/fa6";
 function SearchPage() {
-  const [generatedText, setGeneratedText] = useState('');
-  const textAreaRef = useRef(null);
+    const textAreaRef = useRef(null);
+    const generatedText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit';
+    const handleCopyText = () => {
+        if (textAreaRef.current) {
+          textAreaRef.current.select();
+          document.execCommand('copy');
+        }
+      };
 
-  const handleGenerateText = () => {
-    setGeneratedText('Este es un texto generado por la IA.');
-  };
-
-  const handleCopyText = () => {
-    if (textAreaRef.current) {
-      textAreaRef.current.select();
-      document.execCommand('copy');
-    }
-  };
 
   return (
-    <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 w-auto">
-      <div className="md:w-2/3 mt-10 border-b-2 border-black/50 pb-4">Inicio &gt; Busqueda</div>
-      <div className="flex flex-col gap-4 md:w-2/3 w-full">
-        <div className="flex items-center gap-4 bg-gray-200 p-4 rounded-md shadow-md">
-          <input
-            type="text"
-            placeholder="Busqueda con LLM"
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
-          <button onClick={handleGenerateText} className="p-2 bg-gray-300 rounded-md">
-            <svg className="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3H6a1 1 0 100 2h3v3a1 1 0 102 0v-3h3a1 1 0 100-2h-3V7z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
-        <div className="relative bg-gray-200 p-4 rounded-md shadow-md mt-4">
-          <textarea
-            ref={textAreaRef}
-            value={generatedText}
-            readOnly
-            className="w-full h-48 p-2 border border-gray-300 rounded-md"
-          />
-          <button
-            onClick={handleCopyText}
-            className="absolute bottom-4 right-4 p-2 bg-blue-500 text-white rounded-md"
-          >
-            Copiar Texto
-          </button>
-        </div>
-      </div>
+    <section className="container mx-auto flex flex-col md:gap-12 gap-8 p-4 md:ml-16 w-auto">
+        <div className='md:w-4/5 mt-10 border-b-2 border-black/50 pb-4 text-xl'>Inicio &gt; Búsqueda</div>
+      
+        <div className="flex flex-col w-full items-center gap-12">
+            <div className='flex flex-col p-2 md:w-4/5 w-full text-xl gap-12'>
+                <div><Search/></div>
+                <div className="flex flex-col space-between bg-slate-200 rounded-lg md:p-6 p-3 w-full h-auto min-h-[550px]">
+                    <textarea
+                        ref={textAreaRef}
+                        value={generatedText}
+                        readOnly
+                        className="md:p-6 p-2 border-2 border-black rounded-lg w-full text-lm
+                        h-auto min-h-[500px] w-full resize-none bg-slate-200  transition-all"
+                    />
+                    <div className="flex justify-end">
+                        <button
+                            onClick={handleCopyText}
+                            className="w-fit p-2 bg-slate-200 text-bg-[#212E3F] rounded-lg hover:bg-[#212E3F] hover:text-white"
+                        >
+                            <FaCopy size={24}/>
+                        </button>
+                    </div>
+			    </div>
+            </div>		
+	    </div>
+
     </section>
   );
 }

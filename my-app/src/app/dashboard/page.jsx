@@ -14,7 +14,7 @@ async function DashboardPage() {
 	const tasks = await getTasks(1806);
     const lastTasks = tasks.splice(-3);
 	/*const [notificationVisible, setNotificationVisible] = useState(true);*/
-	const notificationVisible = true;
+	const notificationVisible = false;
 	return (
 		<section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:mt-8">
 			
