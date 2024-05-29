@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { FaEllipsisV, FaTrashAlt, FaCopy, FaShareAlt } from 'react-icons/fa';
+import { FaEllipsisH, FaTrashAlt, FaCopy, FaShareAlt } from 'react-icons/fa';
 
 const OptionsMenu = ({ onClose }) => (
     <div className="absolute top-0 left-12 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
@@ -50,11 +50,11 @@ const NoteTitle = ({ name }) => {
     }, []);
 
     return (
-        <div onClick={handleComponentClick} className="">
+        <div onClick={handleComponentClick} className="relative min-w-[300px] flex items-center justify-between p-3 border rounded-lg cursor-pointer">
+            <span className="text-base">{name}</span>
             <div className="relative" ref={menuRef}>
-                <span className="text-base">{name}</span>
                 <button onClick={toggleMenu} className="ml-2 p-2 rounded-full text-black">
-                    <FaEllipsisV />
+                    <FaEllipsisH />
                 </button>
                 {showMenu && <OptionsMenu onClose={() => setShowMenu(false)} />}
             </div>
@@ -62,4 +62,4 @@ const NoteTitle = ({ name }) => {
     );
 };
 
-export default NoteSelector;
+export default NoteTitle;

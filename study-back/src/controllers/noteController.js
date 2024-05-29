@@ -65,12 +65,20 @@ export const addNamesToNote = async (req, res) => {
       return res.status(404).json({ message: 'Nota no encontrada' });
     }
 
+    if(!note.names) {
+      note.names = [];
+    }
+
+    if(note.names.includes(newName)) {
+      return res.status(409).json({ message: 'El nombre ya existe en la nota' });
+    }
+
     const updatedNames = [...note.names, newName];
 
     note.names = updatedNames;
     await note.save();
 
-    res.status(200).json({ message: 'Nombres añadidos', names: note.names });
+    res.status(201).json({ code:201, message: 'Nombre añadido', newName: newName });
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: 'Error al añadir nombres a la nota', error });

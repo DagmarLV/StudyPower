@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import AddButtonNoteTitle from '@/components/AddButtonNoteTitle';
+import NoteTitle from '@/components/NoteTitle';
 
 const NoteDetail = () => {
   const { hash } = useParams();
@@ -21,24 +22,28 @@ const NoteDetail = () => {
     if (response.code !== 201) {
       return;
     }
-    setNotes([...notes, {
-      id: response.data.userId,
-      name: response.data.title,
-      url: response.data.url
-    }]);
+    setNotes([...notes, response.newName]);
   }
   useEffect(() => {
     fetch(`http://localhost:5000/notes/get/${hash}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setNotes(data)
+        if (!data.names) return;
+        setNotes(data.names)
       });
-  }, [hash]);
+  }, []);
 
   const [addNames, setAddname] = useState(false);
   return (
-    <div className="container mx-auto p-4">
+    <section className="container mx-auto flex flex-col md:gap-6 gap-4 p-4 md:ml-16 w-auto">
+
+      <div className='md:w-2/3 mt-10 border-b-2 border-black/50 pb-4'>Bienvenido a tus apuntes</div>
+      <div className=''>Inicio &gt; Apuntes</div>
+      {
+        notes.map((note) => (
+          <NoteTitle name={note} />
+        ))
+      }
       <AddButtonNoteTitle onClick={() => setAddname(!addNames)} />
       {
         addNames && (
@@ -51,7 +56,7 @@ const NoteDetail = () => {
           </div>
         )
       }
-    </div>
+    </section>
   );
 };
 
