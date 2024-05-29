@@ -25,7 +25,7 @@ async function DashboardPage() {
 				</div>
       		)}
 				<h2 className="text-3xl font-bold md:w-1/3 w-full pl-1">Bienvenido a StudyPower</h2>
-				<Search className="md:w-2/3 w-full" />
+				<div className="md:w-2/3 w-full"><Search /></div>
 			</div>
 			<div className="flex md:flex-row flex-col gap-4">
 				<div className="flex flex-col gap-4 md:w-1/3 w-full">

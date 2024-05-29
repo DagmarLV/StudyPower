@@ -69,7 +69,7 @@ function AsistenciaPage() {
                   return (
                     <div key={index} className="flex flex-col gap-2">
                       <div className="flex gap-2">
-                        <div className={index % 2 == 0 ? "bg-slate-400 p-2 rounded-md" : "bg-blue-200 p-2 rounded-md"}>
+                        <div className={index % 2 == 0 ? "bg-slate-400 p-2 rounded-md flex justify-items-start" : "bg-blue-200 p-2 rounded-md flex justify-items-end"}>
                           <p className="text-lg">{message}</p>
                         </div>
                       </div>
@@ -78,10 +78,10 @@ function AsistenciaPage() {
                 })
               }
             </div>
-            <div className="flex py-4 gap-4">
-              <form onSubmit={handleSubmit} className='flex gap-4 justify-between items-center w-full'>
-                <input type="text" placeholder="Escribir aquí..." className="text-lg p-2 border border-gray-300 rounded-lg items-center justify-center" />
-                <button type="submit" className="bg-[#212E3F] text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#212E3F]/80 transition-colors"><FaArrowRight / ></button>
+            <div className="flex py-4  gap-4">
+              <form onSubmit={handleSubmit} className='flex gap-4 bg-white border border-gray-300 rounded-lg justify-between items-center w-full'>
+                <input type="text" placeholder="Escribir aquí..." className=" bg-transparent grow outline-none text-lg p-3  rounded-lg items-center justify-center" />
+                <button type="submit" className="bg-[#212E3F] text-white w-9 h-9 mr-2 rounded-full flex items-center justify-center hover:bg-[#212E3F]/80 transition-colors"><FaArrowRight / ></button>
               </form>
             </div>
           </div>

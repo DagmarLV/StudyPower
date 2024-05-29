@@ -27,7 +27,7 @@ function SearchPage() {
 
     return (
         <section className="container mx-auto flex flex-col md:gap-12 gap-8 p-4 md:ml-16 w-auto">
-            <div className='w-full mt-10 border-b-2 border-black/50 pb-4 text-xl'>Inicio &gt; Búsqueda</div>
+            <div className='w-full mt-10 border-b-2 border-[#111827]/40 pb-4 text-xl'>Inicio &gt; Búsqueda</div>
 
             <div className="flex flex-col w-full items-center gap-12">
                 <div className='flex flex-col p-2 md:w-4/5 w-full text-xl gap-12'>
@@ -37,8 +37,8 @@ function SearchPage() {
                             ref={textAreaRef}
                             value={generatedText}
                             readOnly
-                            className="md:p-6 p-2 border-2 border-black rounded-lg w-full text-lm
-                        h-auto min-h-[500px] w-full resize-none bg-slate-200  transition-all"
+                            className="md:p-6 p-2 border-0 rounded-lg w-full text-lm
+                        h-auto min-h-[500px] w-full resize-none bg-slate-200  focus:outline-none"
                         />
                         <div className="flex justify-end">
                             <button

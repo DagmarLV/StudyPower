@@ -4,7 +4,7 @@ import { FaMicrophone, FaSearch } from 'react-icons/fa';
 
 function Search({ handleSubmit }) {
 	return (
-		<div>
+		/*<div className='md:w-2/3 w-full'>*/
 			<div className="flex gap-2 items-center justify-center px-4 py-4 rounded-lg bg-slate-200">
 				<Link href="/busqueda" title="busqueda">
 					<FaSearch size={14} />
@@ -16,7 +16,7 @@ function Search({ handleSubmit }) {
 					<FaMicrophone size={18} />
 				</button>
 			</div>
-		</div>
+		/*</div>*/
 	);
 }
 
