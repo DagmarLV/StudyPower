@@ -22,7 +22,7 @@ const OptionsMenu = ({ onClose }) => (
     </div>
 );
 
-const NoteTitle = ({ name }) => {
+const NoteTitle = ({ name, hash }) => {
     const [showMenu, setShowMenu] = useState(false);
     const menuRef = useRef(null);
     const router = useRouter();
@@ -39,7 +39,7 @@ const NoteTitle = ({ name }) => {
     };
 
     const handleComponentClick = () => {
-        router.push("./notas/" + targetUrl);
+        router.push("/notas/"+ hash + "/" + name);
     };
 
     useEffect(() => {

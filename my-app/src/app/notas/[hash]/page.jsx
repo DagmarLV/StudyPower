@@ -1,12 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import AddButtonNoteTitle from '@/components/AddButtonNoteTitle';
+import AddButtonNote from '@/components/AddButtonNote';
 import NoteTitle from '@/components/NoteTitle';
 
 const NoteDetail = () => {
   const { hash } = useParams();
   const [notes, setNotes] = useState([]);
+  const [titleLabel, setTitleLabel] = useState("");
   const onSubmit = async (event) => {
     event.preventDefault()
 
@@ -28,6 +29,7 @@ const NoteDetail = () => {
     fetch(`http://localhost:5000/notes/get/${hash}`)
       .then((res) => res.json())
       .then((data) => {
+        setTitleLabel(data.title);
         if (!data.names) return;
         setNotes(data.names)
       });
@@ -38,13 +40,13 @@ const NoteDetail = () => {
     <section className="container mx-auto flex flex-col md:gap-6 gap-4 p-4 md:ml-16 w-auto">
 
       <div className='md:w-2/3 mt-10 border-b-2 border-black/50 pb-4'>Bienvenido a tus apuntes</div>
-      <div className=''>Inicio &gt; Apuntes</div>
+      <div className=''>Inicio &gt; Apuntes &gt; {titleLabel}</div>
       {
         notes.map((note) => (
-          <NoteTitle name={note} />
+          <NoteTitle name={note} hash={hash}/>
         ))
       }
-      <AddButtonNoteTitle onClick={() => setAddname(!addNames)} />
+      <AddButtonNote onClick={() => setAddname(!addNames)} />
       {
         addNames && (
           <div className='flex flex-col gap-4 items-center justify-end'>
