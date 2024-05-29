@@ -23,31 +23,33 @@ function ProfilePage() {
   };
 
   return (
-    <section className="container mx-auto flex flex-col gap-4 p-4 md:ml-16 w-auto">
-      <div className="md:w-2/3 mt-10 border-b-2 border-black/50 pb-4">PEPITO PEREZ</div>
+    <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 w-auto">
+      <div className="md:w-5/6 mt-10 border-b-2 border-[#111827]/40 pb-4">PEPITO PEREZ</div>
       <div className="flex flex-col gap-4 md:w-2/3 w-full mt-4">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between p-4 border-b-2 border-black/5">
           <span>Nombre : {name}</span>
           <button onClick={() => setName(prompt('Editar nombre:', name))}>✏️</button>
         </div>
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between p-4 border-b-2 border-black/5">
           <span>Apellido : {surname}</span>
           <button onClick={() => setSurname(prompt('Editar apellido:', surname))}>✏️</button>
         </div>
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between p-4 border-b-2 border-black/5">
           <span>Universidad : {university}</span>
           <button onClick={() => setUniversity(prompt('Editar universidad:', university))}>✏️</button>
         </div>
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between p-4 border-b-2 border-black/5">
           <span>Cumpleaños : {birthday}</span>
           <button onClick={() => setBirthday(prompt('Editar cumpleaños:', birthday))}>✏️</button>
         </div>
-        <button 
-          onClick={handleUpdateProfile} 
-          className="bg-gray-300 text-black px-4 py-2 rounded-md"
-        >
-          Actualizar perfil
-        </button>
+        <div>
+          <button 
+            onClick={handleUpdateProfile} 
+            className="mt-8 bg-gray-300 text-black px-4 py-2 rounded-md"
+          >
+            Actualizar perfil
+          </button>
+        </div>
         <div className="mt-4">
           <label className="block mb-2 text-sm font-medium">Tema:</label>
           <select 

@@ -69,7 +69,7 @@ function AsistenciaPage() {
                   return (
                     <div key={index} className="flex flex-col gap-2">
                       <div className="flex gap-2">
-                        <div className={index % 2 == 0 ? "bg-slate-400 p-2 rounded-md flex justify-items-start" : "bg-blue-200 p-2 rounded-md flex justify-items-end"}>
+                        <div className={index % 2 == 0 ? "bg-slate-400 p-2 rounded-md flex justify-start" : "bg-blue-200 p-2 rounded-md flex justify-end"}>
                           <p className="text-lg">{message}</p>
                         </div>
                       </div>
