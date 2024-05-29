@@ -5,9 +5,9 @@ import React from 'react';
 
 function TaskPage() {
   return (
-    <section className="container mx-auto flex flex-col gap-4 p-4 md:ml-16 w-auto">
-      <div className="md:w-2/3 mt-10 border-b-2 border-black/50 pb-4">Bienvenido a tus tareas</div>
-      <div>Inicio &gt; Tareas</div>
+    <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 ml-2 ">
+      <div className='flex md:w-5/6 mt-10 border-b-2 border-[#111827]/40 pb-4 text-2xl'>Bienvenido a tus tareas</div>
+      <div className='text-xl'>Inicio &gt; Tareas</div>
       <div className="flex flex-col md:w-2/3 w-full mt-4">
         <div className="flex flex-col bg-gray-200 p-6 rounded-md shadow-md">
           <h2 className="text-lg font-bold mb-4">Crear Tarea</h2>
