@@ -21,7 +21,7 @@ function LoginPage() {
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
         <form>
           <div className="mb-4">
-            <label className="block mb-2 text-sm font-medium">Email</label>
+            <label className="block mb-2 text-sm font-medium">Correo electrónico</label>
             <input type="email" className="w-full p-2 border border-gray-300 rounded-md" />
           </div>
           <div className="mb-6">

@@ -47,8 +47,8 @@ export default function NotesPage() {
     }
     return (
         <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 w-auto">
-            <div className='md:w-2/3 mt-10 border-b-2 border-black/50 pb-4'>Bienvenido a tus apuntes</div>
-            <div className=''>Inicio &gt; Apuntes</div>
+            <div className='md:w-5/6 mt-10 border-b-2 border-[#111827]/40 pb-4 text-2xl'>Bienvenido a tus apuntes</div>
+            <div className='text-xl'>Inicio &gt; Apuntes</div>
             {
                 notes.map((note) => (
                     <NoteSelector key={note.id} name={note.name} targetUrl={note.hash} />
@@ -59,10 +59,10 @@ export default function NotesPage() {
                 addNotes && (
                     <div className='flex flex-col gap-4 items-center justify-end'>
                         <form onSubmit={onSubmit}> 
-                            <input name="title" type='text' placeholder='Nombre del apunte' className='border-2 border-black/50 p-2' />
+                            <input name="title" type='text' placeholder='Nombre del apunte' className='border-2 border-black/50 p-2 rounded-lg' />
                             <input name="userId" value={1} type='hidden' />
                             <br/>
-                            <button type="submit" className='bg-gray-800 text-white py-2 px-4 rounded-full shadow w-24'>Añadir</button>
+                            <button type="submit" className='py-2 px-6 rounded-full shadow w-fit bg-[#212E3F] text-white hover:bg-[#212E3F]/80 text-lm'>Añadir</button>
                         </form>
                     </div>
                 )

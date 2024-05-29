@@ -39,7 +39,7 @@ function AsistenciaPage() {
   }
 
   return (
-    <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 ml-2">
+    <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 ">
       <div className='md:w-5/6 mt-10 border-b-2 border-black/40 pb-4 text-2xl'>Bienvenido a tu asistente personal</div>
       <div className='text-xl'>Inicio &gt; Asistencia</div>
       <div className="flex md:flex-row flex-col gap-20">
@@ -78,10 +78,12 @@ function AsistenciaPage() {
                 })
               }
             </div>
-            <form onSubmit={handleSubmit} className=''>
-              <input type="text" placeholder="Escribir aquí..." className="text-lg mt-4 p-2 border border-gray-300 rounded-md min-w-full" />
-              <button type="submit" className="bg-slate-400 text-white text-lg mt-4 p-2 rounded-md"><FaArrowRight / ></button>
-            </form>
+            <div className="flex py-4 gap-4">
+              <form onSubmit={handleSubmit} className='flex gap-4 justify-between items-center w-full'>
+                <input type="text" placeholder="Escribir aquí..." className="text-lg p-2 border border-gray-300 rounded-lg items-center justify-center" />
+                <button type="submit" className="bg-[#212E3F] text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#212E3F]/80 transition-colors"><FaArrowRight / ></button>
+              </form>
+            </div>
           </div>
 
         </div>

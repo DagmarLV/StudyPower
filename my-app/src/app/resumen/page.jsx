@@ -42,7 +42,7 @@ export default function Summarypage() {
     
     return (
         <section className="container mx-auto flex flex-col gap-8 p-4 md:ml-16 w-auto">
-        <div className='md:w-full mt-10 border-b-2 border-black/50 pb-4 text-xl'>Inicio &gt; Resumen</div>
+        <div className='md:w-full mt-10 border-b-2 border-[#111827]/40 pb-4 text-xl'>Inicio &gt; Resumen</div>
             <div className="flex flex-col w-full justify-center items-center gap-10">
                 {afterSummaryVisibility && <div className='flex flex-col p-2 md:w-4/5 items-center w-full text-xl gap-1'>
                     <h1 className="text-3xl font-bold text-center">Resumen</h1>
@@ -57,14 +57,14 @@ export default function Summarypage() {
                                     value={text}
                                     onChange={handleInputChange}
                                     className="md:p-6 p-2 rounded-lg w-full text-lm
-                                    h-auto min-h-[400px] w-full resize-none bg-slate-200  transition-all"
+                                    h-auto min-h-[400px] w-full resize-none bg-slate-200  focus:outline-none "
                                     placeholder="|"
                                     style={{ overflow: 'hidden' }}
                                 ></textarea>
                                 <div className="flex justify-between">
                                     <label
                                         htmlFor="file-upload"
-                                        className="flex items-center bg-gray-200 text-black px-4 py-2 rounded-full hover:bg-gray-300 transition-colors cursor-pointer"
+                                        className="flex items-center bg-[#111827]/3 text-[#212E3F] px-4 py-2 rounded-full hover:bg-[#111827]/10 transition-colors cursor-pointer"
                                         >
                                         <FaPaperclip className="mr-2" />
                                             Adjuntar archivo
@@ -76,7 +76,7 @@ export default function Summarypage() {
                                     </label>
                                     <button
                                         type="submit"
-                                        className="bg-black text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                                        className="bg-[#212E3F] text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#212E3F]/80 transition-colors">
                                         <FaArrowRight />
                                     </button>
                                     

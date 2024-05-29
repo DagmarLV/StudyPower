@@ -43,7 +43,7 @@ async function DashboardPage() {
 					<div className="flex flex-col gap-7 p-8 rounded-lg bg-slate-200">
 						<p className='text-2xl'>Próximas tareas:</p>
 						<ListTasks tasks={lastTasks} />
-						<button className="px-4 py-2 mt-1 rounded-lg w-fit bg-[#212E3F] text-white hover:bg-[#212E3F]/80 text-lm">Agregar tareas</button>
+						<button className="px-6 py-2 mt-1 rounded-full w-fit bg-[#212E3F] text-white hover:bg-[#212E3F]/80 text-lm">Agregar tareas</button>
 					</div>
 					<div className="w-full md:h-[185px] h-[140px] rounded-lg bg-slate-200 relative flex items-center ">
   						<p className="ml-10 text-2xl pl-1">Apuntes</p>
