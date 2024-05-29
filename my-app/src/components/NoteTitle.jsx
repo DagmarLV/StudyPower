@@ -22,7 +22,7 @@ const OptionsMenu = ({ onClose }) => (
     </div>
 );
 
-const NoteSelector = ({ name, targetUrl }) => {
+const NoteTitle = ({ name }) => {
     const [showMenu, setShowMenu] = useState(false);
     const menuRef = useRef(null);
     const router = useRouter();
@@ -39,7 +39,7 @@ const NoteSelector = ({ name, targetUrl }) => {
     };
 
     const handleComponentClick = () => {
-        router.push("./notas/"+ targetUrl);
+        router.push("./notas/" + targetUrl);
     };
 
     useEffect(() => {
@@ -50,9 +50,9 @@ const NoteSelector = ({ name, targetUrl }) => {
     }, []);
 
     return (
-        <div onClick={handleComponentClick} className="relative min-w-[300px] flex items-center justify-between p-3 border rounded-lg bg-gray-100 cursor-pointer">
-            <span className="text-base">{name}</span>
+        <div onClick={handleComponentClick} className="">
             <div className="relative" ref={menuRef}>
+                <span className="text-base">{name}</span>
                 <button onClick={toggleMenu} className="ml-2 p-2 rounded-full text-black">
                     <FaEllipsisV />
                 </button>

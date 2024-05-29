@@ -7,7 +7,7 @@ function valuetext(value) {
 }
 
 
-export default function DiscreteSlider() {
+export default function DiscreteSlider({onChange}) {
   return (
     <Box sx={{ width: 400, color:"success" }}>
       <Slider
@@ -21,7 +21,7 @@ export default function DiscreteSlider() {
         min={10}
         max={100}
         color="principal"
-        
+        onChange={onChange}
       />
       
     </Box>

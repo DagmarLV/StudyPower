@@ -4,7 +4,7 @@ const Note = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      url: {
+      hash: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -13,7 +13,7 @@ const Note = (sequelize, DataTypes) => {
         allowNull: true,
       },
       descriptions: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.ARRAY(DataTypes.TEXT),
         allowNull: true,
       },
       userId: {

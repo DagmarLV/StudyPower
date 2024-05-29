@@ -15,7 +15,7 @@ export default function NotesPage() {
                     _notes.push({
                         id: note.id,
                         name: note.title,
-                        url: note.url
+                        hash: note.hash
                     });
                 });
                 setNotes(_notes);
@@ -41,8 +41,9 @@ export default function NotesPage() {
         setNotes([...notes, {
             id: response.data.userId,
             name: response.data.title,
-            url: response.data.url
+            hash: response.data.hash
         }]);
+        console.log(notes);
     }
     return (
         <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 w-auto">
@@ -50,7 +51,7 @@ export default function NotesPage() {
             <div className=''>Inicio &gt; Apuntes</div>
             {
                 notes.map((note) => (
-                    <NoteSelector key={note.id} name={note.name} targetUrl={note.url} />
+                    <NoteSelector key={note.id} name={note.name} targetUrl={note.hash} />
                 ))
             }
             <AddButtonNote onClick={() => setAddNotes(!addNotes)} />
@@ -58,7 +59,7 @@ export default function NotesPage() {
                 addNotes && (
                     <div className='flex flex-col gap-4 items-center justify-end'>
                         <form onSubmit={onSubmit}> 
-                            <input name="title" type='text' placeholder='Nombre de la nota' className='border-2 border-black/50 p-2' />
+                            <input name="title" type='text' placeholder='Nombre del apunte' className='border-2 border-black/50 p-2' />
                             <input name="userId" value={1} type='hidden' />
                             <br/>
                             <button type="submit" className='bg-gray-800 text-white py-2 px-4 rounded-full shadow w-24'>Añadir</button>

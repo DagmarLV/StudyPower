@@ -35,7 +35,7 @@ export default function Summarypage() {
 
     const [value, setValue] = useState(50);
 
-    const handleSliderChange = (newValue) => {
+    const handleSliderChange = (event, newValue) => {
         setValue(newValue);
     };
 
