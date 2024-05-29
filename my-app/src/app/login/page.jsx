@@ -18,7 +18,7 @@ function LoginPage() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">Inicio de sesión</h2>
         <form>
           <div className="mb-4">
             <label className="block mb-2 text-sm font-medium">Correo electrónico</label>
@@ -30,7 +30,7 @@ function LoginPage() {
           </div>
           <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md">Iniciar sesión</button>
         </form>
-        <div className="flex justify-between mt-4">
+        <div className="flex justify-between py-3 mt-4">
           <button 
             onClick={handleForgotPassword} 
             className="text-sm text-blue-500 hover:underline"

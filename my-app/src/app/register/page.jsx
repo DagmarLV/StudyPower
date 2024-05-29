@@ -47,7 +47,7 @@ function RegisterPage() {
             <input name="user" type="text" className="w-full p-2 border border-gray-300 rounded-md" />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 text-sm font-medium">Email</label>
+            <label className="block mb-2 text-sm font-medium">Correo electrónico</label>
             <input name="email" type="email" className="w-full p-2 border border-gray-300 rounded-md" />
           </div>
           <div className="mb-6">
@@ -62,10 +62,10 @@ function RegisterPage() {
             <RegisterResponse message={registerResponse} bgColor={colorResponse} onClose={() => setRegisterResponseVisibility(false)} />
           </div>
         )}
-        <div className="flex justify-between mt-4">
+        <div className="flex justify-center  p-4 mt-4">
           <button 
             onClick={handleLoginRedirect} 
-            className="text-sm text-blue-500 hover:underline"
+            className="text-sm text-blue-500 hover:underline text-center"
           >
             Ya tienes cuenta? Inicia sesión
           </button>
