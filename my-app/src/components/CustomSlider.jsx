@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-
+import Grid from '@mui/material/Grid';
 function valuetext(value) {
     return `${value}°C`;
 }
@@ -9,10 +9,12 @@ function valuetext(value) {
 
 export default function DiscreteSlider({onChange}) {
   return (
-    <Box sx={{ width: 400, color:"success" }}>
+    <Grid container spacing={3} justifyContent="center">
+    <Grid item xs={11} md={6}>
+    <Box sx={{  color:"success" }}>
       <Slider
         aria-label="Temperature"
-        defaultValue={30}
+        defaultValue={50}
         getAriaValueText={valuetext}
         valueLabelDisplay="auto"
         shiftStep={50}
@@ -25,5 +27,7 @@ export default function DiscreteSlider({onChange}) {
       />
       
     </Box>
+    </Grid>
+    </Grid>
   );
 }

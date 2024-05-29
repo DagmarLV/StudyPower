@@ -16,7 +16,7 @@ function SearchPage() {
 
   return (
     <section className="container mx-auto flex flex-col md:gap-12 gap-8 p-4 md:ml-16 w-auto">
-        <div className='md:w-4/5 mt-10 border-b-2 border-black/50 pb-4 text-xl'>Inicio &gt; Búsqueda</div>
+        <div className='w-full mt-10 border-b-2 border-black/50 pb-4 text-xl'>Inicio &gt; Búsqueda</div>
       
         <div className="flex flex-col w-full items-center gap-12">
             <div className='flex flex-col p-2 md:w-4/5 w-full text-xl gap-12'>
