@@ -3,7 +3,7 @@ import OpenAI from "openai";
 const opeanAISearch = new OpenAI(process.env.OPENAI_API_KEY);
 
 const search = async (req, res) => {
-    const url = new URL(process.env.BING_ENDPOINT + "/v7.0/search");
+    const url = new URL("https://api.bing.microsoft.com/v7.0/search");
     url.searchParams.append('q', req.query.q);
     url.searchParams.append('count', 10);
 

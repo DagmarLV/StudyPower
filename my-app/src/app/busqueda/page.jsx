@@ -3,6 +3,8 @@
 import React, { useRef, useState } from 'react';
 import Search from '@/components/Search';
 import { FaCopy } from "react-icons/fa6";
+import Markdown from 'react-markdown';
+
 function SearchPage() {
     const textAreaRef = useRef(null);
     const [generatedText, setGeneratedText] = useState('');
@@ -12,9 +14,9 @@ function SearchPage() {
             document.execCommand('copy');
         }
     };
-    
-	const handleSearch = (e) => {
-		e.preventDefault();
+
+    const handleSearch = (e) => {
+        e.preventDefault();
         const formData = new FormData(e.target);
         const search = formData.get('search');
         setGeneratedText('Cargando...');
@@ -23,7 +25,7 @@ function SearchPage() {
         }).then((data) => {
             setGeneratedText(data.searchResults);
         });
-	};
+    };
 
     return (
         <section className="container mx-auto flex flex-col md:gap-12 gap-8 p-4 md:ml-16 w-auto">
@@ -31,15 +33,13 @@ function SearchPage() {
 
             <div className="flex flex-col w-full items-center gap-12">
                 <div className='flex flex-col p-2 md:w-4/5 w-full text-xl gap-12'>
-                    <div><Search handleSubmit={handleSearch}/></div>
+                    <div><Search handleSubmit={handleSearch} /></div>
                     <div className="flex flex-col space-between bg-slate-200 rounded-lg md:p-6 p-3 w-full h-auto min-h-[550px]">
-                        <textarea
-                            ref={textAreaRef}
-                            value={generatedText}
-                            readOnly
-                            className="md:p-6 p-2 border-0 rounded-lg w-full text-lm
-                        h-auto min-h-[500px] w-full resize-none bg-slate-200  focus:outline-none"
-                        />
+
+                        <Markdown components={{ a: props =>{
+                            return <a href={props.href} target="_blank" className="text-blue-500 hover:underline">{props.children}</a>
+                        }}} className='md:p-6 p-2 border-0 rounded-lg w-full text-lm
+                        h-auto min-h-[500px] w-full resize-none bg-slate-200  focus:outline-none'>{generatedText}</Markdown>
                         <div className="flex justify-end">
                             <button
                                 onClick={handleCopyText}
