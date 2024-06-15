@@ -1,8 +1,8 @@
 
 import React from 'react'
+import TaskCalendar from '@/components/Calendar';
 
 async function CalendarPage() {
-  
 
   return (
     <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 ml-2 ">
@@ -10,7 +10,7 @@ async function CalendarPage() {
       <div className='text-xl'>Inicio &gt; Calendario</div>
       <div className="flex flex-col gap-4 md:w-4/5 w-full">
 					<div className="flex flex-col gap-6 pl-3 ">
-						Se mostrará el calendario aquí
+						<TaskCalendar />
 					</div>		
 			</div>
 
