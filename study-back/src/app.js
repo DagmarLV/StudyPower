@@ -6,6 +6,7 @@ import tipsRoutes from './routes/tipsRoutes.js';
 import notesRoutes from './routes/notesRoutes.js';
 import chatRoutes from './routes/chatRoutes.js';
 import searchRoutes from './routes/searchRoutes.js';
+import taskRoutes from './routes/taskRoutes.js';
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.use('/tips', tipsRoutes);
 app.use('/notes', notesRoutes);
 app.use('/chat', chatRoutes);
 app.use('/search', searchRoutes);
+app.use('/tasks', taskRoutes);
 
 export {app};

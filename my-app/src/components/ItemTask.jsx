@@ -16,7 +16,7 @@ function ItemTask(props) {
 		<tr {...props}>
 			<td className="w-3/5">
 				<Checkbox id={`taks[${props.task?.id}]`} className="flex items-center gap-2">
-					{props.task?.name}
+					{props.task?.title}
 				</Checkbox>
 			</td>
 			<td className="flex gap-2 text-center w-1/5 p-3">
@@ -24,15 +24,15 @@ function ItemTask(props) {
 					<TbAlarmFilled
 						size={18}
 						className={`${
-							getDaysLeft(props.task?.date) <= 1
+							getDaysLeft(props.task?.expire) <= 1
 								? 'text-[#8f3a34]'
-								: getDaysLeft(props.task?.date) <= 5
+								: getDaysLeft(props.task?.expire) <= 5
 								? 'text-[#8f3a34]/75'
 								: 'text-[#8f3a34]/50'
 						}`}
 					/>
 				</button>
-				<p className="text-lm">{props.task?.date}</p>
+				<p className="text-lm">{props.task?.expire}</p>
 			</td>
 			<td className="text-center w-1/5">
 				<button>
