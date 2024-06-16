@@ -4,7 +4,7 @@ import Search from '@/components/Search';
 import TipPreview from '@/components/TipPreview';
 import ListTasks from '@/components/ListTasks';
 import { FaStar } from 'react-icons/fa';
-
+import Link from 'next/link'; 
 
 import tips from '@/data/tips.json';
 import tasks from '@/data/tasks.json';
@@ -25,7 +25,9 @@ async function DashboardPage() {
 				</div>
       		)}
 				<h2 className="text-3xl font-bold md:w-1/3 w-full pl-1">Bienvenido a StudyPower</h2>
+				<Link href="/busqueda">
 				<div className="md:w-2/3 w-full"><Search /></div>
+				</Link>
 			</div>
 			<div className="flex md:flex-row flex-col gap-4">
 				<div className="flex flex-col gap-4 md:w-1/3 w-full">
@@ -33,11 +35,13 @@ async function DashboardPage() {
 					<div className="w-full h-[400px] rounded-lg bg-slate-200">
 					
 					</div>
+					<Link href="/asistente">
 					<TipPreview tip={tips[0]?.tip} className="p-6  rounded-lg bg-slate-200">
 						<FaStar size={48} />
 						<p className="text-center text-lg">{tips[0]?.phrase}</p>
 						<h2 className='mt-2 text-base text-left w-full'>Tips:</h2>
 					</TipPreview>
+					</Link>
 				</div>
 				<div className="flex flex-col gap-4 md:w-2/3 w-full">
 					<div className="flex flex-col gap-7 p-8 rounded-lg bg-slate-200">
@@ -45,14 +49,18 @@ async function DashboardPage() {
 						<ListTasks tasks={lastTasks} />
 						<button className="px-6 py-2 mt-1 rounded-full w-fit bg-[#212E3F] text-white hover:bg-[#212E3F]/80 text-lm">Agregar tareas</button>
 					</div>
+					<Link href="/notas">
 					<div className="w-full md:h-[185px] h-[140px] rounded-lg bg-slate-200 relative flex items-center ">
   						<p className="ml-10 text-2xl pl-1">Apuntes</p>
   						<span className="triangle-right"></span>
 					</div>
+					</Link>
+					<Link href="/resumen">
 					<div className="w-full md:h-[185px] h-[140px] rounded-lg bg-slate-200 relative flex items-center ">
   						<p className="ml-10 text-2xl pl-1">Resúmenes con LLM</p>
   						<span className="triangle-right"></span>
 					</div>
+					</Link>
 				</div>
 			</div>
 		</section>
