@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import AddButtonNote from '@/components/AddButtonNote';
 import NoteTitle from '@/components/NoteTitle';
+import jwt from 'jsonwebtoken';
 
 const NoteDetail = () => {
   const { hash } = useParams();
@@ -10,9 +11,9 @@ const NoteDetail = () => {
   const [titleLabel, setTitleLabel] = useState("");
   const onSubmit = async (event) => {
     event.preventDefault()
-
+    const decoded = jwt.decode(localStorage.getItem('token'));
     const formData = new FormData(event.target)
-    const data = await fetch(`http://localhost:5000/notes/create/${hash}`, {
+    const data = await fetch(`http://localhost:5000/notes/create/${hash}/${decoded.id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +27,8 @@ const NoteDetail = () => {
     setNotes([...notes, response.newName]);
   }
   useEffect(() => {
-    fetch(`http://localhost:5000/notes/get/${hash}`)
+    const decoded = jwt.decode(localStorage.getItem('token'));
+    fetch(`http://localhost:5000/notes/get/${hash}/${decoded.id}`)
       .then((res) => res.json())
       .then((data) => {
         setTitleLabel(data.title);

@@ -46,7 +46,7 @@ const routes = [
 	},
 	{
 		name: 'Salir',
-		path: '/login',
+		path: '/salir',
 		icon: IoLogOut,
 	},
 ];

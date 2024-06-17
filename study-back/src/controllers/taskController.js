@@ -3,7 +3,8 @@ import crypto from 'crypto';
 
 export const createTask = async (req, res) => {
     try {
-        let { title, userId, description, expire, dificulty } = req.body;
+        let userId = req.params.userId;
+        let { title, description, expire, dificulty } = req.body;
         title = title.trim();
         const hash = crypto.createHash('md5').update(title).digest('hex');
         

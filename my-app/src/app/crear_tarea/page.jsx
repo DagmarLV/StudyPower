@@ -1,19 +1,20 @@
 "use client";
-
+import jwt from 'jsonwebtoken';
 import React from 'react';
 function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
   const formData = new FormData(form);
+  const decoded = jwt.decode(localStorage.getItem('token'));
   const data = Object.fromEntries(formData.entries());
-  fetch(`http://localhost:5000/tasks/${1}`, {
+
+  fetch(`http://localhost:5000/tasks/${decoded.id}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
   });
-  console.log(data);
 }
 
 function TaskPage() {
@@ -45,7 +46,6 @@ function TaskPage() {
                 <option value={2}>Difícil</option>
               </select>
             </div>
-            <input type='hidden' name='userId' value={1} />
             <div className="md:col-span-2 flex justify-end">
               <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md">Agregar</button>
             </div>

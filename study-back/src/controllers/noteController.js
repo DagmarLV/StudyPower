@@ -3,7 +3,8 @@ import crypto from 'crypto';
 
 export const createNote = async (req, res) => {
   try {
-    let { title, userId } = req.body;
+    const userId = req.params.userId;
+    let { title} = req.body;
     title = title.trim();
     const hash = crypto.createHash('md5').update(title).digest('hex');
 
@@ -38,10 +39,21 @@ export const getNotes = async (req, res) => {
   }
 };
 
+export const getNotesFromUser = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const notes = await db.Note.findAll({ where: { userId } });
+    res.status(200).json(notes);
+  } catch (error) {
+    res.status(400).json({ message: 'Error al obtener las notas', error });
+  }
+};
+
 export const getNoteNames = async (req, res) => {
   try {
+    const userId = req.params.userId;
     const noteHash = req.params.hash;
-    const note = await db.Note.findOne({ where: { hash: noteHash } });
+    const note = await db.Note.findOne({ where: { hash: noteHash, userId } });
 
     if (!note) {
       return res.status(404).json({ message: 'Nota no encontrada' });
@@ -56,10 +68,11 @@ export const getNoteNames = async (req, res) => {
 
 export const addNamesToNote = async (req, res) => {
   try {
+    const userId = req.params.userId;
     const noteHash = req.params.hash;
     const { newName } = req.body;
 
-    const note = await db.Note.findOne({ where: { hash: noteHash } });
+    const note = await db.Note.findOne({ where: { hash: noteHash, userId } });
 
     if (!note) {
       return res.status(404).json({ message: 'Nota no encontrada' });
@@ -90,11 +103,12 @@ export const addNamesToNote = async (req, res) => {
 
 export const updateNoteDescription = async (req, res) => {
   try {
+    const userId = req.params.userId;
     const noteHash = req.params.hash;
     const name = req.params.name;
     const {description} = req.body;
 
-    const note = await db.Note.findOne({ where: { hash: noteHash } });
+    const note = await db.Note.findOne({ where: { hash: noteHash, userId } });
 
     if (!note) {
       return res.status(404).json({ message: 'Nota no encontrada' });
@@ -118,10 +132,11 @@ export const updateNoteDescription = async (req, res) => {
 
 export const getDescriptionByName = async (req, res) => {
   try {
+    const userId = req.params.userId;
     const noteHash = req.params.hash;
     const name = req.params.name;
 
-    const note = await db.Note.findOne({ where: { hash: noteHash } });
+    const note = await db.Note.findOne({ where: { hash: noteHash, userId } });
 
     if (!note) {
       return res.status(404).json({ message: 'Nota no encontrada' });

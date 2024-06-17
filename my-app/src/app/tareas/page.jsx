@@ -1,12 +1,14 @@
 'use client';
 import React, { useEffect } from 'react'
 import ListTasks from '@/components/ListTasks';
+import jwt from 'jsonwebtoken';
 
 
 function TaskPage() {
 	const [tasks, setTasks] = React.useState([]);
 	useEffect(() => {
-		fetch(`http://localhost:5000/tasks/1`).then((response) => response.json())
+		const decoded = jwt.decode(localStorage.getItem('token'));
+		fetch(`http://localhost:5000/tasks/${decoded.id}`).then((response) => response.json())
 			.then((data) => {
 				setTasks(data);
 			}
