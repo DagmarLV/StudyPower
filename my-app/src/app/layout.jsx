@@ -9,7 +9,7 @@ export default function RootLayout({ children }) {
   const [showSidebar, setShowSidebar] = useState(true);
 
   useEffect(() => {
-    const noSidebarRoutes = ['/login', '/register'];
+    const noSidebarRoutes = ['/login', '/register', '/forgot-password','/'];
     setShowSidebar(!noSidebarRoutes.includes(window.location.pathname));
   }, []);
 
