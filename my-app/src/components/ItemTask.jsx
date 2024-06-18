@@ -1,7 +1,17 @@
 import React from 'react';
 import Checkbox from '@/components/Checkbox';
-import { FaPencilAlt } from 'react-icons/fa';
+import { FaPencilAlt, FaTrash } from 'react-icons/fa';
 import { TbAlarmFilled } from 'react-icons/tb';
+
+const deleteTask = async (id) => {
+	const response = await fetch(`http://localhost:5000/tasks/${id}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	window.location.reload();
+};
 
 const getDaysLeft = (date) => {
 	const today = new Date();
@@ -37,6 +47,9 @@ function ItemTask(props) {
 			<td className="text-center w-1/5">
 				<button>
 					<FaPencilAlt size={14} />
+				</button>
+				<button onClick={()=>deleteTask(props.task?.id)}>
+					<FaTrash size={14} />
 				</button>
 			</td>
 		</tr>

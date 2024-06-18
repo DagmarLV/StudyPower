@@ -113,14 +113,6 @@ export default function Summarypage() {
                     <div className="md:mt-6 mt-4 flex flex-col md:flex-row w-full md:justify-end justify-center items-center gap-4 ">
                         <button
                             onClick={() => {
-                                setAfterSummaryVisibility(false);
-                                setSummaryVisibility(false);
-                            }}
-                            className="w-[220px] py-2 mt-3 bg-gray-900 text-white rounded-full  text-lg transition-all hover:bg-gray-800 focus:outline-none">
-                            Guardar en notas
-                        </button>
-                        <button
-                            onClick={() => {
                                 setAfterSummaryVisibility(true);
                                 setSummaryVisibility(false);
                             }}

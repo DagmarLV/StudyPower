@@ -3,7 +3,6 @@ import React, { useEffect } from 'react'
 import ListTasks from '@/components/ListTasks';
 import jwt from 'jsonwebtoken';
 
-
 function TaskPage() {
 	const [tasks, setTasks] = React.useState([]);
 	useEffect(() => {

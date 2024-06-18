@@ -1,18 +1,27 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { FaEllipsisV, FaTrashAlt, FaCopy, FaShareAlt } from 'react-icons/fa';
+import { FaEllipsisV, FaTrashAlt, FaShareAlt } from 'react-icons/fa';
+import jwt from 'jsonwebtoken';
 
-const OptionsMenu = ({ onClose }) => (
+const deleteByHash = async (hash, userId) => {
+    try {
+        const response = await fetch(`http://localhost:5000/notes/delete/${hash}/${userId}`, { method: 'DELETE' });
+        if (!response.ok) {
+            throw new Error('Error al eliminar la nota');
+        }
+        window.location.reload();
+    } catch (error) {
+        console.error('Error al eliminar la nota:', error);
+    }
+}
+
+const OptionsMenu = ({ onClose, hashToDelete, userId }) => (
     <div className="absolute top-0 left-12 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
         <ul className="py-1">
-            <li className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={onClose}>
+            <li className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => deleteByHash(hashToDelete, userId)}>
                 <FaTrashAlt className="mr-2" />
                 Eliminar
-            </li>
-            <li className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={onClose}>
-                <FaCopy className="mr-2" />
-                Duplicar
             </li>
             <li className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={onClose}>
                 <FaShareAlt className="mr-2" />
@@ -26,6 +35,7 @@ const NoteSelector = ({ name, targetUrl }) => {
     const [showMenu, setShowMenu] = useState(false);
     const menuRef = useRef(null);
     const router = useRouter();
+    const userId = jwt.decode(localStorage.getItem('token')).id;
 
     const toggleMenu = (e) => {
         e.stopPropagation();
@@ -39,6 +49,7 @@ const NoteSelector = ({ name, targetUrl }) => {
     };
 
     const handleComponentClick = () => {
+        if(showMenu) return;
         router.push("./notas/"+ targetUrl);
     };
 
@@ -56,7 +67,7 @@ const NoteSelector = ({ name, targetUrl }) => {
                 <button onClick={toggleMenu} className="ml-2 p-2 rounded-full text-black">
                     <FaEllipsisV />
                 </button>
-                {showMenu && <OptionsMenu onClose={() => setShowMenu(false)} />}
+                {showMenu && <OptionsMenu onClose={() => setShowMenu(false)} hashToDelete={targetUrl+""} userId={userId}/>}
             </div>
         </div>
     );

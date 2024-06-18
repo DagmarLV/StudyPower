@@ -19,7 +19,11 @@ const UserDetails = (sequelize, DataTypes) => {
                 model: 'Users',
                 key: 'id'
             }
-        }
+        },
+        birthDate: {
+            type: DataTypes.DATE,
+            allowNull: true,
+        },
     }, {
         tableName: 'User_details',
     });

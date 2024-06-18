@@ -14,6 +14,14 @@ const { SpeechRecognition: AzureSpeechRecognition } = createSpeechServicesPonyfi
         subscriptionKey: SUBSCRIPTION_KEY,
     }
 });
+
+const makeShareURL = (hash, name) => {
+    const data = hash + ","+ name;
+    const encoded = btoa(data);
+    return `http://localhost:3000/compartir/${encoded}`;
+};
+
+
 const NoteViewer = () => {
     const params = useParams();
     const [titleLabel, setTitleLabel] = useState("");
@@ -21,12 +29,12 @@ const NoteViewer = () => {
     const [description, setDescription] = useState("");
     const decoded = jwt.decode(localStorage.getItem('token'));
     useEffect(() => {
-        fetch(`http://localhost:5000/notes/get/${params.hash}/${params.name}/${decoded.id}`)
+        fetch(`http://localhost:5000/notes/get/description/${params.hash}/${params.name}`)
             .then((res) => res.json())
             .then((data) => {
                 setTitleLabel(data.title);
                 setDescription(data.description);
-                setNoteLabel(params.name);
+                setNoteLabel(decodeURIComponent(params.name));
             });
         setNoteLabel(params.name);
     }, []);
@@ -82,6 +90,7 @@ const NoteViewer = () => {
             <form onSubmit={onSubmit}>
                 <textarea name="description" defaultValue={description} className='border-2 border-black/50 p-2 w-full h-96' >
                 </textarea>
+                <button type="button" onClick={() => alert(makeShareURL(params.hash, params.name))} className='bg-gray-800 text-white py-2 px-4 rounded-full shadow w-24'>Compartir</button>
                 <button type="submit" className='bg-gray-800 text-white py-2 px-4 rounded-full shadow w-24'>Guardar</button>
             </form>
         </section>

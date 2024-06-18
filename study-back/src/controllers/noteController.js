@@ -132,11 +132,10 @@ export const updateNoteDescription = async (req, res) => {
 
 export const getDescriptionByName = async (req, res) => {
   try {
-    const userId = req.params.userId;
-    const noteHash = req.params.hash;
+    const hash = req.params.hash;
     const name = req.params.name;
 
-    const note = await db.Note.findOne({ where: { hash: noteHash, userId } });
+    const note = await db.Note.findOne({ where: { hash } });
 
     if (!note) {
       return res.status(404).json({ message: 'Nota no encontrada' });
@@ -148,9 +147,58 @@ export const getDescriptionByName = async (req, res) => {
     }
 
     const description = note.descriptions[nameIndex];
-    res.status(200).json({ code:200, message: 'Descripcion obtenida', description, title: note.title});
+    res.status(200).json({ code:200, message: 'Descripcion obtenida', description, title: note.title, name});
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: 'Error al obtener la descripcion de la nota', error });
+  }
+}
+
+export const deleteNote = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const hash = req.params.hash;
+
+    const note = await db.Note.findOne({ where: { hash, userId } });
+
+    if (!note) {
+      return res.status(404).json({ message: 'Nota no encontrada' });
+    }
+
+    await note.destroy();
+    res.status(200).json({ code:200, message: 'Nota eliminada', title: note.title });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: 'Error al eliminar la nota', error });
+  }
+}
+
+export const deleteNameFromNote = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const hash = req.params.hash;
+    const {name} = req.body;
+
+    const note = await db.Note.findOne({ where: { hash, userId } });
+
+    if (!note) {
+      return res.status(404).json({ message: 'Nota no encontrada' });
+    }
+
+    const nameIndex = note.names.indexOf(name);
+    if (nameIndex === -1) {
+      return res.status(404).json({ message: 'Nombre no encontrado en la nota' });
+    }
+
+    note.names.splice(nameIndex, 1);
+    note.descriptions.splice(nameIndex, 1);
+    note.changed('names', true);
+    note.changed('descriptions', true);
+    await note.save();
+
+    res.status(200).json({ code:200, message: 'Nombre eliminado', name });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: 'Error al eliminar el nombre de la nota', error });
   }
 }
