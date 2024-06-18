@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import TipPreview from '@/components/TipPreview';
 import { FaArrowRight, FaStar  } from 'react-icons/fa';
-
+import Link from 'next/link'; 
 
 function AsistenciaPage() {
   const [tip1, setTip1] = useState("");
@@ -53,13 +53,21 @@ function AsistenciaPage() {
             <p className="text-lg ">Tips recomendados para ti</p>
             <TipPreview tip={tip1} className="rounded-lg "></TipPreview>
             <TipPreview tip={tip2} className="rounded-lg "></TipPreview>
-            <TipPreview tip={tip3} className="rounded-lg "></TipPreview>
           </div>
+          <div>
+            <p className="text-lg ">Insignias y Logros</p>
+            <Link href="/logros">
+              <div className="bg-slate-200 mt-8 rounded-md relative flex  items-center h-[120px]">
+                <p className="ml-10 text-xl ">Insignias y Logros</p> 
+                <span className="small-triangle-right"></span>
+              </div>
+            </Link>
+          </div>  
         </div>
 
         <div className="flex flex-col gap-8 md:w-3/5 w-full">
           <p className="text-lg ">Solicita ayuda personalizada</p>
-          <div className="bg-slate-200 p-4 rounded-md flex flex-col h-auto min-h-[600px]">
+          <div className="bg-slate-200 p-4 rounded-md flex flex-col h-auto min-h-[900px]">
             <div className="flex items-center justify-center mb-4">
               <div className="text-3xl">🧑‍🏫</div>
             </div>

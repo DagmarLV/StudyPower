@@ -38,7 +38,6 @@ function LogrosPage() {
                     <div>
                         <p className="text-lg ">Tus Logros</p>
                         <LogroPreview tip="aca va un logro" className="rounded-lg "></LogroPreview>
-
                     </div>
                 </div>
 
