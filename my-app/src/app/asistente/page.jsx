@@ -13,11 +13,11 @@ function AsistenciaPage() {
   
   useEffect(() => {
     setChat([]);
-    fetch('https://ihc-back-rvn7.onrender.com/tips/phrase').then(res => res.json()).then(data => setPhrase(data.phrase));
-    fetch('https://ihc-back-rvn7.onrender.com/tips').then(res => res.json()).then(data => setTip1(data.tip));
-    fetch('https://ihc-back-rvn7.onrender.com/tips').then(res => res.json()).then(data => setTip2(data.tip));
-    fetch('https://ihc-back-rvn7.onrender.com/tips').then(res => res.json()).then(data => setTip3(data.tip));
-    fetch('https://ihc-back-rvn7.onrender.com/chat').then(res => res.json()).then(data => {
+    fetch('http://localhost:5000/tips/phrase').then(res => res.json()).then(data => setPhrase(data.phrase));
+    fetch('http://localhost:5000/tips').then(res => res.json()).then(data => setTip1(data.tip));
+    fetch('http://localhost:5000/tips').then(res => res.json()).then(data => setTip2(data.tip));
+    fetch('http://localhost:5000/tips').then(res => res.json()).then(data => setTip3(data.tip));
+    fetch('http://localhost:5000/chat').then(res => res.json()).then(data => {
       setChat([...chat, data.message]);
     });
   }, []);
@@ -27,7 +27,7 @@ function AsistenciaPage() {
     const message = e.target[0].value;
     setChat([...chat, message]);
     e.target[0].value = "";
-    fetch('https://ihc-back-rvn7.onrender.com/chat', {
+    fetch('http://localhost:5000/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -10,7 +10,7 @@ function SharePage() {
     useEffect(() => {
         const decoded = atob(decodeURIComponent(encoded));
         const [hash, name] = decoded.split(",");
-        fetch(`https://ihc-back-rvn7.onrender.com/notes/get/description/${hash}/${name}`)
+        fetch(`http://localhost:5000/notes/get/description/${hash}/${name}`)
             .then((res) => res.json())
             .then((data) => {
                 setDescription(data.description);
