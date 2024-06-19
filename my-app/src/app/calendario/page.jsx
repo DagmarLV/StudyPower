@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import TaskCalendar from '@/components/Calendar';
 import jwt from 'jsonwebtoken';
 
+
 function CalendarPage() {
   const [events, setEvents] = React.useState([]);
   useEffect(() => {
@@ -45,29 +46,33 @@ function CalendarPage() {
     <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 ml-2 ">
       <div className='flex md:w-5/6 mt-10 border-b-2 border-[#111827]/40 pb-4 text-2xl'>Bienvenido a tu Calendario</div>
       <div className='text-xl'>Inicio &gt; Calendario</div>
-      <div className="flex flex-col md:flex-row gap-4 md:w-4/5 w-full">
-        <div className="flex flex-col gap-6 pl-3">
-          <TaskCalendar events={events} />
+      <div className="flex flex-col md:flex-row gap-12  w-full">
+
+        <div className="flex flex-col gap-6 pl-3 md:w-3/4 w-full">
+          <TaskCalendar events={events}/>
         </div>
-        <div className="flex gap-6 pl-3 flex-grow">
-          <form className="flex flex-col gap-4 w-full" onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="title">Título</label>
-              <input type="text" id="title" name="title" />
+
+        <div className="flex gap-8 pl-3 md:w-1/4 w-full">
+          <form className="flex flex-col gap-8 w-full" onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-6">
+              <label htmlFor="title" className='text-lg'>Título</label>
+              <input type="text" id="title" name="title" className="p-1 border border-gray-300 text-lg rounded-md outline-none"/>
             </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="start">Inicio</label>
-              <input type="datetime-local" id="start" name="start" />
+            <div className="flex flex-col gap-6">
+              <label htmlFor="start" className='text-lg'>Inicio</label>
+              <input type="datetime-local" id="start" name="start" className="p-2 border border-gray-300 text-lg rounded-md" />
             </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="end">Fin</label>
-              <input type="datetime-local" id="end" name="end" />
+            <div className="flex flex-col gap-6">
+              <label htmlFor="end" className='text-lg'>Fin</label>
+              <input type="datetime-local" id="end" name="end" className="p-1 border border-gray-300 text-lg rounded-md"/>
             </div>
-            <div className="flex gap-2">
-              <label htmlFor="all">Todo el día</label>
-              <input type="checkbox" id="all" name="allDay" />
+            <div className="flex items-center justify-start align-center gap-6 py-5">
+              <label htmlFor="all" className='text-lg'>Todo el día</label>
+              <input type="checkbox" id="all" name="allDay" className='w-5 h-5 ' />
             </div>
-            <button className="bg-[#F87171] text-white rounded-md py-2" type="submit">Crear Evento</button>
+            <div className='flex justify-center'>
+              <button className="px-8 py-3  rounded-full w-fit bg-[#212E3F] text-white hover:bg-[#212E3F]/80 text-lm flex justify-center" type="submit">Crear Evento</button>
+            </div>
           </form>
         </div>
       </div>

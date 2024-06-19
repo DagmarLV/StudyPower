@@ -6,8 +6,6 @@ import ListTasks from '@/components/ListTasks';
 import { FaStar } from 'react-icons/fa';
 import Link from 'next/link';
 import jwt from 'jsonwebtoken';
-import tips from '@/data/tips.json';
-import tasks from '@/data/tasks.json';
 import Notification from '@/components/Notification';
 import { useRouter } from 'next/navigation'
 import { MiniCalendar } from '@/components/MiniCalendar';
@@ -51,9 +49,11 @@ function DashboardPage() {
 			</div>
 			<div className="flex md:flex-row flex-col gap-4">
 				<div className="flex flex-col gap-4 md:w-1/3 w-full">
-					<div className="w-full h-[400px] rounded-lg bg-slate-200">
-						<MiniCalendar />
-					</div>
+					<Link href="/calendario">
+						<div className="w-full h-[400px] rounded-lg bg-slate-200">
+							<MiniCalendar />
+						</div>
+					</Link>
 					<Link href="/asistente">
 						<TipPreview tip={tip1} className="p-6  rounded-lg bg-slate-200">
 							<FaStar size={48} />

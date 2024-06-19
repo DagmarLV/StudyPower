@@ -20,15 +20,15 @@ const localizer = dateFnsLocalizer({
 })
 
 const TaskCalendar = ({events}) => (
-  <div>
+
     <Calendar
       localizer={localizer}
       events={events}
       startAccessor="start"
       endAccessor="end"
-      style={{ height: 500 }}
+      style={{ height: 700 }}
     />
-  </div>
+  
 )
 
 export default TaskCalendar;

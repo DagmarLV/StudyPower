@@ -20,14 +20,20 @@ const localizer = dateFnsLocalizer({
 
 export function MiniCalendar() {
   return (
-    <div>
+    <div className="flex items-center justify-center">
       <Calendar
         localizer={localizer}
         events={[]}
         startAccessor="start"
         endAccessor="end"
         toolbar={false}
-        style={{ height: 400 }}
+        style={{ 
+          height: 380, 
+          width: '95%',
+          margin: '0 auto',
+          marginTop: 10
+        }}
+        className='custom-calendar'
       />
     </div>
   );

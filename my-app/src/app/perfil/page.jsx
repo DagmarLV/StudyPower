@@ -88,7 +88,8 @@ function ProfilePage() {
 
   return (
     <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 w-auto">
-      <div className="md:w-5/6 mt-10 border-b-2 border-[#111827]/40 pb-4 text-2xl">{name.toUpperCase()} {surname.toUpperCase()}</div>
+      <div className="md:w-5/6 mt-10 border-b-2 border-[#111827]/40 pb-4 text-2xl">Bienvenido a tu Perfil</div>
+      <div className='text-xl'>Inicio &gt; Perfil</div>
       <div className="flex flex-col gap-4 md:w-2/3 w-full mt-4">
         <div className="flex items-center justify-between p-4 border-b-2 border-black/5 text-lg">
           <span>Nombre : <input id="nameInput" value={name} disabled={true} onChange={(e) => { setName(document.getElementById('nameInput').value) }} /></span>
@@ -102,43 +103,43 @@ function ProfilePage() {
         <div className="flex items-center justify-between p-4 border-b-2 border-black/5 text-lg">
           <span>Cumpleaños : <input id="birthdayInput" type="date" value={birthday} disabled={true} onChange={(e) => { setBirthday(document.getElementById('birthdayInput').value) }} /></span>
         </div>
-        <div>
+        <div className='flex items-center justify-start gap-10 text-lg'>
           <button
             onClick={handleUpdateProfile}
-            className="mt-8 bg-gray-300 text-black px-4 py-2 rounded-md text-lg"
+            className="mt-8 px-6 py-2 mt-1 rounded-full w-fit bg-[#212E3F] text-white hover:bg-[#212E3F]/80 text-lm"
           >
             Actualizar perfil
           </button>
           <button
             onClick={handleEditProfile}
-            className="mt-8 bg-gray-300 text-black px-4 py-2 rounded-md text-lg"
+            className="mt-8 px-6 py-2 mt-1 rounded-full w-fit bg-[#212E3F] text-white hover:bg-[#212E3F]/80 text-lm"
           >
             Editar perfil
           </button>
         </div>
-        <div className="mt-4  text-lg">
+        <div className="py-4 flex flex-col gap-2 text-lg">
           <label className="block mb-2 text-sm font-medium  text-lg">
             <p className='text-lg'>Tema:</p>
           </label>
           <select
             value={theme}
             onChange={(e) => setTheme(e.target.value)}
-            className="px-5 py-2 border border-gray-300 rounded-md"
+            className="px-5 py-2 border border-gray-300 rounded-md w-[170px] "
           >
-            <option value="Claro" className='rounded-md'>Claro</option>
+            <option value="Claro">Claro</option>
             <option value="Oscuro">Oscuro</option>
           </select>
         </div>
-        <div className="flex gap-4 mt-6">
+        <div className="mt-6 flex items-center justify-start gap-10 text-lg">
           <button
             onClick={handleEnable2FA}
-            className="bg-gray-300 text-black px-4 py-2 rounded-md text-lg"
+            className=" px-6 py-2 rounded-full w-fit bg-[#212E3F] text-white hover:bg-[#212E3F]/80 text-lm"
           >
             Habilitar 2FA
           </button>
           <button
             onClick={handleChangePassword}
-            className="bg-gray-300 text-black px-4 py-2 rounded-md text-lg"
+            className=" px-6 py-2 rounded-full w-fit bg-[#212E3F] text-white hover:bg-[#212E3F]/80 text-lm"
           >
             Cambiar contraseña
           </button>
