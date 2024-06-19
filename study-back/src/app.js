@@ -8,6 +8,7 @@ import chatRoutes from './routes/chatRoutes.js';
 import searchRoutes from './routes/searchRoutes.js';
 import taskRoutes from './routes/taskRoutes.js';
 import loginRoutes from './routes/loginRoutes.js';
+import profileRoutes from './routes/profileRoutes.js';
 
 const app = express();
 
@@ -22,5 +23,6 @@ app.use('/chat', chatRoutes);
 app.use('/search', searchRoutes);
 app.use('/tasks', taskRoutes);
 app.use('/login', loginRoutes);
+app.use('/profile', profileRoutes);
 
 export {app};

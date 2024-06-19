@@ -27,7 +27,6 @@ const NoteViewer = () => {
     const [titleLabel, setTitleLabel] = useState("");
     const [noteLabel, setNoteLabel] = useState("");
     const [description, setDescription] = useState("");
-    const decoded = jwt.decode(localStorage.getItem('token'));
     useEffect(() => {
         fetch(`http://localhost:5000/notes/get/description/${params.hash}/${params.name}`)
             .then((res) => res.json())

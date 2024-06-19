@@ -1,18 +1,82 @@
 // src/app/perfil/page.jsx
 "use client";
-
-import React, { useState } from 'react';
-import { FaPencilAlt } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import jwt from 'jsonwebtoken';
 function ProfilePage() {
-  const [name, setName] = useState('Pepito');
-  const [surname, setSurname] = useState('Perez');
-  const [university, setUniversity] = useState('ABC');
-  const [birthday, setBirthday] = useState('31/02');
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [university, setUniversity] = useState('');
+  const [birthday, setBirthday] = useState('');
   const [theme, setTheme] = useState('Claro');
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/profile/get/${jwt.decode(localStorage.getItem('token')).id}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        setName(data.name);
+        setSurname(data.lastName);
+        setUniversity(data.university);
+        const date = new Date(data.birthDate);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+        setBirthday(formattedDate);
+      });
+  }, []);
+
   const handleUpdateProfile = () => {
-    alert('Perfil actualizado');
+    const localDate = document.getElementById('birthdayInput').value;
+    const localDateTime = new Date(localDate);
+    const utcYear = localDateTime.getUTCFullYear();
+    const utcMonth = String(localDateTime.getUTCMonth() + 1).padStart(2, '0');
+    const utcDay = String(localDateTime.getUTCDate()).padStart(2, '0');
+    const utcDate = `${utcYear}-${utcMonth}-${parseInt(utcDay)+1}`;
+    fetch(`http://localhost:5000/profile/update/${jwt.decode(localStorage.getItem('token')).id}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: document.getElementById('nameInput').value,
+          lastName: document.getElementById('surnameInput').value,
+          university: document.getElementById('universityInput').value,
+          birthDate: utcDate,
+        })
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.code === 200) {
+          window.location.reload();
+        }
+      });
   };
+
+  const handleEditProfile = () => {
+    const nameInput = document.getElementById('nameInput');
+    const surnameInput = document.getElementById('surnameInput');
+    const universityInput = document.getElementById('universityInput');
+    const birthdayInput = document.getElementById('birthdayInput');
+    if (nameInput.disabled) {
+      nameInput.disabled = false;
+      surnameInput.disabled = false;
+      universityInput.disabled = false;
+      birthdayInput.disabled = false;
+      return;
+    }
+    nameInput.disabled = true;
+    surnameInput.disabled = true;
+    universityInput.disabled = true;
+    birthdayInput.disabled = true;
+    return;
+  }
 
   const handleEnable2FA = () => {
     alert('2FA habilitado');
@@ -24,39 +88,41 @@ function ProfilePage() {
 
   return (
     <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 w-auto">
-      <div className="md:w-5/6 mt-10 border-b-2 border-[#111827]/40 pb-4 text-2xl">PEPITO PEREZ</div>
+      <div className="md:w-5/6 mt-10 border-b-2 border-[#111827]/40 pb-4 text-2xl">{name.toUpperCase()} {surname.toUpperCase()}</div>
       <div className="flex flex-col gap-4 md:w-2/3 w-full mt-4">
         <div className="flex items-center justify-between p-4 border-b-2 border-black/5 text-lg">
-          <span>Nombre : {name}</span>
-          <button onClick={() => setName(prompt('Editar nombre:', name))}><FaPencilAlt size={18} /></button>
+          <span>Nombre : <input id="nameInput" value={name} disabled={true} onChange={(e) => { setName(document.getElementById('nameInput').value) }} /></span>
         </div>
         <div className="flex items-center justify-between p-4 border-b-2 border-black/5 text-lg">
-          <span>Apellido : {surname}</span>
-          <button onClick={() => setSurname(prompt('Editar apellido:', surname))}><FaPencilAlt size={18} /></button>
+          <span>Apellido : <input id="surnameInput" value={surname} disabled={true} onChange={(e) => { setSurname(document.getElementById('surnameInput').value) }} /></span>
         </div>
         <div className="flex items-center justify-between p-4 border-b-2 border-black/5 text-lg">
-          <span>Universidad : {university}</span>
-          <button onClick={() => setUniversity(prompt('Editar universidad:', university))}><FaPencilAlt size={18} /></button>
+          <span>Universidad : <input id="universityInput" value={university} disabled={true} onChange={(e) => { setUniversity(document.getElementById('universityInput').value) }} /></span>
         </div>
         <div className="flex items-center justify-between p-4 border-b-2 border-black/5 text-lg">
-          <span>Cumpleaños : {birthday}</span>
-          <button onClick={() => setBirthday(prompt('Editar cumpleaños:', birthday))}><FaPencilAlt size={18} /></button>
+          <span>Cumpleaños : <input id="birthdayInput" type="date" value={birthday} disabled={true} onChange={(e) => { setBirthday(document.getElementById('birthdayInput').value) }} /></span>
         </div>
         <div>
-          <button 
-            onClick={handleUpdateProfile} 
+          <button
+            onClick={handleUpdateProfile}
             className="mt-8 bg-gray-300 text-black px-4 py-2 rounded-md text-lg"
           >
             Actualizar perfil
           </button>
+          <button
+            onClick={handleEditProfile}
+            className="mt-8 bg-gray-300 text-black px-4 py-2 rounded-md text-lg"
+          >
+            Editar perfil
+          </button>
         </div>
         <div className="mt-4  text-lg">
           <label className="block mb-2 text-sm font-medium  text-lg">
-           <p className='text-lg'>Tema:</p>
+            <p className='text-lg'>Tema:</p>
           </label>
-          <select 
-            value={theme} 
-            onChange={(e) => setTheme(e.target.value)} 
+          <select
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
             className="px-5 py-2 border border-gray-300 rounded-md"
           >
             <option value="Claro" className='rounded-md'>Claro</option>
@@ -64,14 +130,14 @@ function ProfilePage() {
           </select>
         </div>
         <div className="flex gap-4 mt-6">
-          <button 
-            onClick={handleEnable2FA} 
+          <button
+            onClick={handleEnable2FA}
             className="bg-gray-300 text-black px-4 py-2 rounded-md text-lg"
           >
             Habilitar 2FA
           </button>
-          <button 
-            onClick={handleChangePassword} 
+          <button
+            onClick={handleChangePassword}
             className="bg-gray-300 text-black px-4 py-2 rounded-md text-lg"
           >
             Cambiar contraseña
