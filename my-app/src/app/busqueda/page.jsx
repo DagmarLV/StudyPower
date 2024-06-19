@@ -20,7 +20,7 @@ function SearchPage() {
         const formData = new FormData(e.target);
         const search = formData.get('search');
         setGeneratedText('Cargando...');
-        fetch(`http://localhost:5000/search?q=${search}`).then((response) => {
+        fetch(`https://ihc-back-rvn7.onrender.com/search?q=${search}`).then((response) => {
             return response.json();
         }).then((data) => {
             setGeneratedText(data.searchResults);

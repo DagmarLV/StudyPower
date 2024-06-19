@@ -21,9 +21,9 @@ function DashboardPage() {
 	/*const [notificationVisible, setNotificationVisible] = useState(true);*/
 	useEffect(() => {
 		const decoded = jwt.decode(localStorage.getItem('token'));
-		fetch('http://localhost:5000/tips').then(res => res.json()).then(data => setTip1(data.tip));
-		fetch('http://localhost:5000/tips/phrase').then(res => res.json()).then(data => setPhrase(data.phrase));
-		fetch(`http://localhost:5000/tasks/${decoded.id}`).then((response) => response.json())
+		fetch('https://ihc-back-rvn7.onrender.com/tips').then(res => res.json()).then(data => setTip1(data.tip));
+		fetch('https://ihc-back-rvn7.onrender.com/tips/phrase').then(res => res.json()).then(data => setPhrase(data.phrase));
+		fetch(`https://ihc-back-rvn7.onrender.com/tasks/${decoded.id}`).then((response) => response.json())
 			.then((data) => {
 				setTasks(data);
 				setLastTasks(data.splice(-3));
