@@ -19,11 +19,11 @@ const localizer = dateFnsLocalizer({
   locales,
 })
 
-const TaskCalendar = (props) => (
+const TaskCalendar = ({events}) => (
   <div>
     <Calendar
       localizer={localizer}
-      events={["owo2"]}
+      events={events}
       startAccessor="start"
       endAccessor="end"
       style={{ height: 500 }}

@@ -9,6 +9,7 @@ import searchRoutes from './routes/searchRoutes.js';
 import taskRoutes from './routes/taskRoutes.js';
 import loginRoutes from './routes/loginRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
+import eventsRouter from './routes/eventsRoutes.js';
 
 const app = express();
 
@@ -24,5 +25,6 @@ app.use('/search', searchRoutes);
 app.use('/tasks', taskRoutes);
 app.use('/login', loginRoutes);
 app.use('/profile', profileRoutes);
+app.use('/events', eventsRouter);
 
 export {app};

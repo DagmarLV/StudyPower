@@ -4,6 +4,7 @@ import UserModel from './userModel.js';
 import UserDetailsModel from './userDetailsModel.js';
 import NoteModel from './noteModel.js';
 import TaskModel from './taskModel.js';
+import Event from './eventModel.js';
 
 const database = process.env.DB_NAME;
 const username = process.env.DB_USERNAME;
@@ -30,6 +31,7 @@ db.User = UserModel(sequelize, Sequelize.DataTypes);
 db.UserDetails = UserDetailsModel(sequelize, Sequelize.DataTypes);
 db.Note = NoteModel(sequelize, Sequelize.DataTypes);
 db.Task = TaskModel(sequelize, Sequelize.DataTypes);
+db.Event = Event(sequelize, Sequelize.DataTypes);
 
 db.User.hasOne(db.UserDetails, {
     foreignKey: 'userId',
@@ -56,6 +58,16 @@ db.User.hasMany(db.Task, {
 });
 
 db.Task.belongsTo(db.User, {
+    foreignKey: 'userId',
+    as: 'user',
+});
+
+db.User.hasMany(db.Event, {
+    foreignKey: 'userId',
+    as: 'events',
+});
+
+db.Event.belongsTo(db.User, {
     foreignKey: 'userId',
     as: 'user',
 });
