@@ -4,7 +4,7 @@ import { FaPencilAlt, FaTrash } from 'react-icons/fa';
 import { TbAlarmFilled } from 'react-icons/tb';
 
 const deleteTask = async (id) => {
-	const response = await fetch(`https://ihc-back-rvn7.onrender.com/tasks/${id}`, {
+	const response = await fetch(`http://localhost:5000/tasks/${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
