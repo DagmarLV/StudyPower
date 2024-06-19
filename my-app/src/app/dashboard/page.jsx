@@ -1,20 +1,37 @@
 'use client';
-import React from 'react';
+import React,{ useEffect, useState } from 'react';
 import Search from '@/components/Search';
 import TipPreview from '@/components/TipPreview';
 import ListTasks from '@/components/ListTasks';
 import { FaStar } from 'react-icons/fa';
 import Link from 'next/link'; 
-
+import jwt from 'jsonwebtoken';
 import tips from '@/data/tips.json';
 import tasks from '@/data/tasks.json';
 import Notification from '@/components/Notification';
-async function DashboardPage() {
-	const tips = await getTips();
-	const tasks = await getTasks(1806);
-    const lastTasks = tasks.splice(-3);
+function DashboardPage() {
+	//const tips = await getTips();
+	//const tasks = await getTasks(1806);
+    //const lastTasks = tasks.splice(-3);
+	const [tip1, setTip1] = useState("");
+	const [tasks, setTasks] = useState([]);
+	const [lastTasks, setLastTasks] = useState([]);
+	const [phrase, setPhrase] = useState("");
+	const [notificationVisible, setNotificationVisible] = useState(false);
 	/*const [notificationVisible, setNotificationVisible] = useState(true);*/
-	const notificationVisible = false;
+	useEffect(() => {
+		const decoded = jwt.decode(localStorage.getItem('token'));
+		fetch('http://localhost:5000/tips').then(res => res.json()).then(data => setTip1(data.tip));
+		fetch('http://localhost:5000/tips/phrase').then(res => res.json()).then(data => setPhrase(data.phrase));
+		fetch(`http://localhost:5000/tasks/${decoded.id}`).then((response) => response.json())
+		  .then((data) => {
+			setTasks(data);
+			setLastTasks(data.splice(-3));
+		  });
+	  }, []);
+	
+
+	console.log(lastTasks);
 	return (
 		<section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:mt-8">
 			
@@ -25,9 +42,9 @@ async function DashboardPage() {
 				</div>
       		)}
 				<h2 className="text-3xl font-bold md:w-1/3 w-full pl-1">Bienvenido a StudyPower</h2>
-				<Link href="/busqueda">
-				<div className="md:w-2/3 w-full"><Search /></div>
-				</Link>
+				<div className="md:w-2/3 w-full">
+					<Search />
+				</div>
 			</div>
 			<div className="flex md:flex-row flex-col gap-4">
 				<div className="flex flex-col gap-4 md:w-1/3 w-full">
@@ -36,9 +53,9 @@ async function DashboardPage() {
 					
 					</div>
 					<Link href="/asistente">
-					<TipPreview tip={tips[0]?.tip} className="p-6  rounded-lg bg-slate-200">
+					<TipPreview tip={tip1} className="p-6  rounded-lg bg-slate-200">
 						<FaStar size={48} />
-						<p className="text-center text-lg">{tips[0]?.phrase}</p>
+						<p className="text-center text-lg">{phrase}</p>
 						<h2 className='mt-2 text-base text-left w-full'>Tips:</h2>
 					</TipPreview>
 					</Link>
@@ -65,22 +82,6 @@ async function DashboardPage() {
 			</div>
 		</section>
 	);
-}
-
-async function getTips() {
-	//const response = await fetch('api/v1/tips');
-	const response = tips;
-	//const data = await response.json();
-	const data = response.data;
-	return data;
-}
-
-async function getTasks(userID) {
-	//const response = await fetch(`api/v1/tasks/${userID}`);
-	const response = tasks;
-	//const data = await response.json();
-	const data = response.data;
-	return data;
 }
 
 

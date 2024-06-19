@@ -24,13 +24,13 @@ const getDaysLeft = (date) => {
 function ItemTask(props) {
 	return (
 		<tr {...props}>
-			<td className="w-3/5">
+			<td className="w-2/5">
 				<Checkbox id={`taks[${props.task?.id}]`} className="flex items-center gap-2">
 					{props.task?.title}
 				</Checkbox>
 			</td>
-			<td className="flex gap-2 text-center w-1/5 p-3">
-				<button>
+			<td className="flex gap-1 text-center w-4/5 p-3">
+				<div className='flex flex-row items-center justify-center gap-2'>
 					<TbAlarmFilled
 						size={18}
 						className={`${
@@ -39,17 +39,15 @@ function ItemTask(props) {
 								: getDaysLeft(props.task?.expire) <= 5
 								? 'text-[#8f3a34]/75'
 								: 'text-[#8f3a34]/50'
-						}`}
+						} justify-center items-center`}
 					/>
-				</button>
-				<p className="text-lm">{props.task?.expire}</p>
+					<p className="text-lm">{props.task?.expire}</p>
+				</div>
+				
 			</td>
 			<td className="text-center w-1/5">
-				<button>
-					<FaPencilAlt size={14} />
-				</button>
 				<button onClick={()=>deleteTask(props.task?.id)}>
-					<FaTrash size={14} />
+					<FaTrash size={16} color='#ad282b'/>
 				</button>
 			</td>
 		</tr>
