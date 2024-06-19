@@ -9,6 +9,7 @@ import jwt from 'jsonwebtoken';
 import tips from '@/data/tips.json';
 import tasks from '@/data/tasks.json';
 import Notification from '@/components/Notification';
+import { useRouter } from 'next/navigation'
 function DashboardPage() {
 	//const tips = await getTips();
 	//const tasks = await getTasks(1806);
@@ -29,9 +30,10 @@ function DashboardPage() {
 			setLastTasks(data.splice(-3));
 		  });
 	  }, []);
-	
-
-	console.log(lastTasks);
+	const router = useRouter();
+	const navigateToTasks = () => {
+		router.push('/tareas');
+	}
 	return (
 		<section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:mt-8">
 			
@@ -64,7 +66,7 @@ function DashboardPage() {
 					<div className="flex flex-col gap-7 p-8 rounded-lg bg-slate-200">
 						<p className='text-2xl'>Próximas tareas:</p>
 						<ListTasks tasks={lastTasks} />
-						<button className="px-6 py-2 mt-1 rounded-full w-fit bg-[#212E3F] text-white hover:bg-[#212E3F]/80 text-lm">Agregar tareas</button>
+						<button  onClick={navigateToTasks} className="px-6 py-2 mt-1 rounded-full w-fit bg-[#212E3F] text-white hover:bg-[#212E3F]/80 text-lm">Agregar tareas</button>
 					</div>
 					<Link href="/notas">
 					<div className="w-full md:h-[185px] h-[140px] rounded-lg bg-slate-200 relative flex items-center ">
