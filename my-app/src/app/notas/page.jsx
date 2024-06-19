@@ -48,7 +48,7 @@ export default function NotesPage() {
         console.log(notes);
     }
     return (
-        <section className="container mx-auto flex flex-col md:gap-12 gap-4 p-4 md:ml-16 w-auto">
+        <section className="container mx-auto flex flex-col md:gap-12 gap-8 p-4 md:ml-16 w-auto">
             <div className='md:w-5/6 mt-10 border-b-2 border-[#111827]/40 pb-4 text-2xl'>Bienvenido a tus apuntes</div>
             <div className='text-xl'>Inicio &gt; Apuntes</div>
             {

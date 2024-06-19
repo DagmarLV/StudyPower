@@ -39,15 +39,17 @@ const NoteDetail = () => {
 
   const [addNames, setAddname] = useState(false);
   return (
-    <section className="container mx-auto flex flex-col md:gap-6 gap-4 p-4 md:ml-16 w-auto">
+    <section className="container mx-auto flex flex-col md:gap-12 gap-8 p-4 md:ml-16 w-auto">
 
-      <div className='md:w-2/3 mt-10 border-b-2 border-black/50 pb-4'>Bienvenido a tus apuntes</div>
-      <div className=''>Inicio &gt; Apuntes &gt; {titleLabel}</div>
+      <div className='md:w-2/3 mt-10 border-b-2 border-black/50 pb-4 text-2xl'>Bienvenido a tus apuntes</div>
+      <div className='text-xl'>Inicio &gt; Apuntes &gt; {titleLabel}</div>
+      <div className='grid grid-cols-1 gap-4'>
       {
         notes.map((note) => (
           <NoteTitle name={note} hash={hash}/>
         ))
       }
+      </div>
       <AddButtonNote onClick={() => setAddname(!addNames)} />
       {
         addNames && (
@@ -61,6 +63,7 @@ const NoteDetail = () => {
         )
       }
     </section>
+    
   );
 };
 

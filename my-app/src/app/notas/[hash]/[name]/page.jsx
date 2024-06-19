@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import createSpeechServicesPonyfill from 'web-speech-cognitive-services';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import jwt from 'jsonwebtoken';
-
+import { FaMicrophone} from 'react-icons/fa';
 const SUBSCRIPTION_KEY = process.env.NEXT_PUBLIC_API_AZURE_VOICE;
 const REGION = 'eastus';
 const { SpeechRecognition: AzureSpeechRecognition } = createSpeechServicesPonyfill({
@@ -65,7 +65,7 @@ const NoteViewer = () => {
     } = useSpeechRecognition();
     const OnSpeechRecording = () => {
         if (!browserSupportsSpeechRecognition) {
-            alert('Your browser does not support speech recognition software! Try Chrome desktop, maybe?');
+            alert('¡Su navegador no es compatible con el software de reconocimiento de voz! Pruebe con Chrome para escritorio');
             return;
         }
         if (isRecording) {
@@ -81,17 +81,21 @@ const NoteViewer = () => {
         }
     }
     return (
-        <section className="container mx-auto flex flex-col md:gap-6 gap-4 p-4 md:ml-16 w-auto">
-            <div className='md:w-2/3 mt-10 border-b-2 border-black/50 pb-4'>Bienvenido a tus apuntes</div>
-            <div className=''>Inicio &gt; Apuntes &gt; {titleLabel} &gt; {noteLabel}</div>
-            <h1>{noteLabel}</h1>
-            <button onClick={OnSpeechRecording} className='bg-gray-800 text-white py-2 px-4 rounded-full shadow w-24'>{listening ? "Grabando..." : "Voz a texto"}</button>
-            <form onSubmit={onSubmit}>
-                <textarea name="description" defaultValue={description} className='border-2 border-black/50 p-2 w-full h-96' >
-                </textarea>
-                <button type="button" onClick={() => alert(makeShareURL(params.hash, params.name))} className='bg-gray-800 text-white py-2 px-4 rounded-full shadow w-24'>Compartir</button>
-                <button type="submit" className='bg-gray-800 text-white py-2 px-4 rounded-full shadow w-24'>Guardar</button>
-            </form>
+        <section className="container mx-auto flex flex-col md:gap-12 gap-8 p-4 md:ml-16 w-auto">
+            <div className='md:w-2/3 mt-10 border-b-2 border-black/50 pb-4 text-2xl'>Bienvenido a tus apuntes</div>
+            <div className='text-xl'>Inicio &gt; Apuntes &gt; {titleLabel} &gt; {noteLabel}</div>
+            <div className='flex justify-end mr-1'>
+            <button onClick={OnSpeechRecording} className='flex items-center justify-center gap-3 bg-gray-800 text-white py-2 rounded-full shadow w-40'>{listening ? "Grabando..." : "Voz a texto"}		<FaMicrophone size={18} /></button>
+            </div>
+                <form onSubmit={onSubmit}>
+                    <textarea name="description" defaultValue={description} className='rounded-lg border-2 border-black/50 p-4  w-full h-auto min-h-96 outline-none' >
+                    </textarea>
+                </form>
+                <form onSubmit={onSubmit} className='flex gap-4 justify-end'>
+                    <button type="button" onClick={() => alert(makeShareURL(params.hash, params.name))} className='bg-gray-800 text-white py-2 w-[120px] rounded-full shadow  flex items-center justify-center'>Compartir</button>
+                    <button type="submit" className='bg-gray-800 text-white py-2 rounded-full shadow w-[120px] flex items-center justify-center mr-1'>Guardar</button>
+                </form>
+
         </section>
     );
 }
