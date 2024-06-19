@@ -10,7 +10,7 @@ function ProfilePage() {
   const [theme, setTheme] = useState('Claro');
 
   useEffect(() => {
-    fetch(`https://ihc-back-rvn7.onrender.com/profile/get/${jwt.decode(localStorage.getItem('token')).id}`,
+    fetch(`http://localhost:5000/profile/get/${jwt.decode(localStorage.getItem('token')).id}`,
       {
         method: 'GET',
         headers: {
@@ -38,7 +38,7 @@ function ProfilePage() {
     const utcMonth = String(localDateTime.getUTCMonth() + 1).padStart(2, '0');
     const utcDay = String(localDateTime.getUTCDate()).padStart(2, '0');
     const utcDate = `${utcYear}-${utcMonth}-${parseInt(utcDay)+1}`;
-    fetch(`https://ihc-back-rvn7.onrender.com/profile/update/${jwt.decode(localStorage.getItem('token')).id}`,
+    fetch(`http://localhost:5000/profile/update/${jwt.decode(localStorage.getItem('token')).id}`,
       {
         method: 'POST',
         headers: {

@@ -15,7 +15,7 @@ function RegisterPage() {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    const data = await fetch('https://ihc-back-rvn7.onrender.com/register', {
+    const data = await fetch('http://localhost:5000/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

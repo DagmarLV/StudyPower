@@ -10,7 +10,7 @@ function TaskPage() {
 
   useEffect(() => {
     const decoded = jwt.decode(localStorage.getItem('token'));
-    fetch(`https://ihc-back-rvn7.onrender.com/tasks/${decoded.id}`).then((response) => response.json())
+    fetch(`http://localhost:5000/tasks/${decoded.id}`).then((response) => response.json())
       .then((data) => {
         setTasks(data);
       });

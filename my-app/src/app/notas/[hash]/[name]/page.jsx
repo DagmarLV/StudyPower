@@ -28,7 +28,7 @@ const NoteViewer = () => {
     const [noteLabel, setNoteLabel] = useState("");
     const [description, setDescription] = useState("");
     useEffect(() => {
-        fetch(`https://ihc-back-rvn7.onrender.com/notes/get/description/${params.hash}/${params.name}`)
+        fetch(`http://localhost:5000/notes/get/description/${params.hash}/${params.name}`)
             .then((res) => res.json())
             .then((data) => {
                 setTitleLabel(data.title);
@@ -43,7 +43,7 @@ const NoteViewer = () => {
 
         const decoded = jwt.decode(localStorage.getItem('token'));
         const formData = new FormData(event.target)
-        const data = await fetch(`https://ihc-back-rvn7.onrender.com/notes/create/${params.hash}/${params.name}/${decoded.id}`, {
+        const data = await fetch(`http://localhost:5000/notes/create/${params.hash}/${params.name}/${decoded.id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

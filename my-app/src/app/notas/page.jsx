@@ -9,7 +9,7 @@ export default function NotesPage() {
     const [notes, setNotes] = useState([]);
     useEffect(() => {
         const decoded = jwt.decode(localStorage.getItem('token'));
-        fetch(`https://ihc-back-rvn7.onrender.com/notes/get/${decoded.id}`, { method: 'GET' })
+        fetch(`http://localhost:5000/notes/get/${decoded.id}`, { method: 'GET' })
             .then(response => response.json())
             .then(data => {
                 const _notes = [];
@@ -28,7 +28,7 @@ export default function NotesPage() {
         event.preventDefault()
         const decoded = jwt.decode(localStorage.getItem('token'));
         const formData = new FormData(event.target)
-        const data = await fetch(`https://ihc-back-rvn7.onrender.com/notes/create/${decoded.id}`, {
+        const data = await fetch(`http://localhost:5000/notes/create/${decoded.id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
