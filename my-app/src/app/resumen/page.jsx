@@ -11,7 +11,7 @@ export default function Summarypage() {
         event.preventDefault()
 
         const formData = new FormData(event.target)
-        const data = await fetch('http://localhost:5000/summarize', {
+        const data = await fetch('https://ihc-back-rvn7.onrender.com/summarize', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

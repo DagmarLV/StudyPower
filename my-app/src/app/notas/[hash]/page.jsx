@@ -13,7 +13,7 @@ const NoteDetail = () => {
     event.preventDefault()
     const decoded = jwt.decode(localStorage.getItem('token'));
     const formData = new FormData(event.target)
-    const data = await fetch(`http://localhost:5000/notes/create/${hash}/${decoded.id}`, {
+    const data = await fetch(`https://ihc-back-rvn7.onrender.com/notes/create/${hash}/${decoded.id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ const NoteDetail = () => {
   }
   useEffect(() => {
     const decoded = jwt.decode(localStorage.getItem('token'));
-    fetch(`http://localhost:5000/notes/get/${hash}/${decoded.id}`)
+    fetch(`https://ihc-back-rvn7.onrender.com/notes/get/${hash}/${decoded.id}`)
       .then((res) => res.json())
       .then((data) => {
         setTitleLabel(data.title);
