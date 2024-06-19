@@ -5,7 +5,7 @@ import { FaEllipsisH, FaTrashAlt, FaShareAlt } from 'react-icons/fa';
 import jwt from 'jsonwebtoken';
 
 const deleteName = async (name, hash, userId) => {
-    const response = await fetch(`http://localhost:5000/notes/delete/name/${hash}/${userId}`, {
+    const response = await fetch(`https://ihc-back-rvn7.onrender.com/notes/delete/name/${hash}/${userId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
