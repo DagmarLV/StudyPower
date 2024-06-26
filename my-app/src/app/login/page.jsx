@@ -18,7 +18,7 @@ function LoginPage() {
   async function handleSubmit(event){
     event.preventDefault();
     const formData = new FormData(event.target);
-    await fetch('http://localhost:5000/login', {
+    await fetch('https://ihc-back-rvn7.onrender.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

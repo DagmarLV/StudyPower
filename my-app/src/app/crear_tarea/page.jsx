@@ -8,7 +8,7 @@ function handleSubmit(e) {
   const decoded = jwt.decode(localStorage.getItem('token'));
   const data = Object.fromEntries(formData.entries());
 
-  fetch(`http://localhost:5000/tasks/${decoded.id}`, {
+  fetch(`https://ihc-back-rvn7.onrender.com/tasks/${decoded.id}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

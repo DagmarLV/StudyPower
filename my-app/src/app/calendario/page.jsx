@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 function CalendarPage() {
   const [events, setEvents] = React.useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/events/${jwt.decode(localStorage.getItem('token')).id}`)
+    fetch(`https://ihc-back-rvn7.onrender.com/events/${jwt.decode(localStorage.getItem('token')).id}`)
       .then(response => response.json())
       .then(data => {
         data.forEach((event) => {
@@ -29,7 +29,7 @@ function CalendarPage() {
       end: new Date(data.get('end')),
       allDay: data.get('allDay') === 'on'
     };
-    fetch(`http://localhost:5000/events/${jwt.decode(localStorage.getItem("token")).id}`, {
+    fetch(`https://ihc-back-rvn7.onrender.com/events/${jwt.decode(localStorage.getItem("token")).id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

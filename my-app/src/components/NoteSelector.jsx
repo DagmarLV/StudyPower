@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 
 const deleteByHash = async (hash, userId) => {
     try {
-        const response = await fetch(`http://localhost:5000/notes/delete/${hash}/${userId}`, { method: 'DELETE' });
+        const response = await fetch(`https://ihc-back-rvn7.onrender.com/notes/delete/${hash}/${userId}`, { method: 'DELETE' });
         if (!response.ok) {
             throw new Error('Error al eliminar la nota');
         }
