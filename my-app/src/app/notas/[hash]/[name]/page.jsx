@@ -18,7 +18,7 @@ const { SpeechRecognition: AzureSpeechRecognition } = createSpeechServicesPonyfi
 const makeShareURL = (hash, name) => {
     const data = hash + ","+ name;
     const encoded = btoa(data);
-    return `http://localhost:3000/compartir/${encoded}`;
+    return `https://ihc-back-rvn7.onrender.com/compartir/${encoded}`;
 };
 
 
